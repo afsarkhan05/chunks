@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<!--
+
+    Configuration file for UrlRewriteFilter
+    http://www.tuckey.org/urlrewrite/
+
+-->
+<urlrewrite>
+
+    <rule>
+        <note>
+            The rule means that requests to /test/status/ will be redirected to /rewrite-status
+            the url will be rewritten.
+        </note>
+        <from>/chunks/test/status/</from>
+        <to type="redirect">%{context-path}/chunks/rewrite-status</to>
+    </rule>
+
+
+    <outbound-rule>
+        <note>
+
+        </note>
+        <from>/chunks/rewrite-status</from>
+        <to>/chunks/test/status/</to>
+    </outbound-rule>
+    
+    
+    <rule>
+    <name>Trailing Slash Problem</name>
+	    <note>
+	        Every webmaster can sing a song about the problem of the trailing slash on URLs referencing directories.
+	        If they are missing, the server dumps an error, because if you say /~quux/foo instead of /~quux/foo/ then
+	        the server searches for a file named foo. And because this file is a directory it complains. Actually it
+	        tries to fix it itself in most of the cases, but sometimes this mechanism need to be emulated by you. For
+	        instance after you have done a lot of complicated URL rewritings to CGI scripts etc.
+	
+	        The solution to this subtle problem is to let the server add the trailing slash automatically. To do this
+	        correctly we have to use an external redirect, so the browser correctly requests subsequent images etc. If
+	        we only did a internal rewrite, this would only work for the directory page, but would go wrong when any
+	        images are included into this page with relative URLs, because the browser would request an in-lined object.
+	        For instance, a request for image.gif in /~quux/foo/index.html would become /~quux/image.gif without the
+	        external redirect!
+	    </note>
+	    <from>^/chunks/article/([a-z_-]+)/([0-9]+)/$</from>
+	    <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
+    </rule>
+    
+    
+    
+    
+    <rule>
+        <from>^/chunks/article/([a-z_-]+)/([0-9]+)$</from>
+        <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
+    </rule>
+    
+    <outbound-rule>
+        <note>
+
+        </note>
+        <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
+        <to>/world/$1/$2</to-->
+
+        <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
+        <to>/chunks/article/$1/$2</to>
+    </outbound-rule>
+    
+    <rule>
+        <from>^/chunks/questions/([a-z]+)/([0-9]+)$</from>
+        <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
+    </rule>
+    
+    <outbound-rule>
+        <note>
+            The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
+            the url /rewrite-status will be rewritten to /test/status/.
+
+            The above rule and this outbound-rule means that end users should never see the
+            url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
+            in your pages.
+        </note>
+        <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
+        <to>/world/$1/$2</to-->
+
+        <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
+        <to>/chunks/questions/$1/$2</to>
+    </outbound-rule>
+
+
+    <rule>
+        <from>^/chunks/all/article$</from>
+        <to>/articleResult.do</to>
+    </rule>
+
+    <rule>
+        <from>^/chunks/all/article/$</from>
+        <to>/articleResult.do</to>
+    </rule>
+    
+    <outbound-rule>
+        <note></note>
+        <from>/articleResult.do</from>
+        <to>/chunks/all/article/</to>
+    </outbound-rule>
+
+
+
+    <!--
+
+    INSTALLATION
+
+        in your web.xml add...
+
+        <filter>
+            <filter-name>UrlRewriteFilter</filter-name>
+            <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+            <init-param>
+                <param-name>logLevel</param-name>
+                <param-value>WARN</param-value>
+            </init-param>
+        </filter>
+        <filter-mapping>
+            <filter-name>UrlRewriteFilter</filter-name>
+            <url-pattern>/*</url-pattern>
+        </filter-mapping>
+
+     EXAMPLES
+
+     Redirect one url
+        <rule>
+            <from>/some/old/page.html</from>
+            <to type="redirect">/very/new/page.html</to>
+        </rule>
+
+    Redirect a directory
+        <rule>
+            <from>/some/olddir/(.*)</from>
+            <to type="redirect">/very/newdir/$1</to>
+        </rule>
+
+    Clean a url
+        <rule>
+            <from>/products/([0-9]+)</from>
+            <to>/products/index.jsp?product_id=$1</to>
+        </rule>
+    eg, /products/1234 will be passed on to /products/index.jsp?product_id=1234 without the user noticing.
+
+    Browser detection
+        <rule>
+            <condition name="user-agent">Mozilla/[1-4]</condition>
+            <from>/some/page.html</from>
+            <to>/some/page-for-old-browsers.html</to>
+        </rule>
+    eg, will pass the request for /some/page.html on to /some/page-for-old-browsers.html only for older
+    browsers whose user agent srtings match Mozilla/1, Mozilla/2, Mozilla/3 or Mozilla/4.
+
+    Centralised browser detection
+        <rule>
+            <condition name="user-agent">Mozilla/[1-4]</condition>
+            <set type="request" name="browser">moz</set>
+        </rule>
+    eg, all requests will be checked against the condition and if matched
+    request.setAttribute("browser", "moz") will be called.
+    
+    
+    Redirect a directory (for moved content)
+
+
+    <rule>
+        <from>^/some/olddir/(.*)$</from>
+        <to type="redirect">/very/newdir/$1</to>
+    </rule>
+
+Clean a URL
+
+
+    <rule>
+        <from>^/products/([0-9]+)$</from>
+        <to>/products/index.jsp?product_id=$1</to>
+    </rule>
+
+e.g. /products/1234 will be passed on to /products/index.jsp?product_id=1234 without the user noticing.
+
+
+    <rule>
+        <from>^/world/([a-z]+)/([a-z]+)$</from>
+        <to>/world.jsp?country=$1&amp;city=$2</to>
+    </rule>
+
+e.g. /world/unitedstates/newyork will be passed on to /world.jsp?country=unitedstates&city=newyork 
+    
+
+    -->
+
+</urlrewrite>
+

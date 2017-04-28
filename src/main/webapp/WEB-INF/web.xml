@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>PRM</display-name>
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/jsp/home.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>GraphServlet</display-name>
+    <servlet-name>GraphServlet</servlet-name>
+    <servlet-class>com.synechron.prm.controller.GraphServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GraphServlet</servlet-name>
+    <url-pattern>/GraphServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MaturityServlet</display-name>
+    <servlet-name>MaturityServlet</servlet-name>
+    <servlet-class>com.synechron.prm.controller.MaturityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MaturityServlet</servlet-name>
+    <url-pattern>/MaturityServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AwardServlet</display-name>
+    <servlet-name>AwardServlet</servlet-name>
+    <servlet-class>com.synechron.prm.controller.AwardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AwardServlet</servlet-name>
+    <url-pattern>/AwardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImageServlet</display-name>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>com.synechron.prm.controller.ImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/ImageServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  	<servlet>
+		<servlet-name>SimpleCaptcha</servlet-name>
+		<servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimpleCaptcha</servlet-name>
+		<url-pattern>/simpleCaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ChineseCaptcha</servlet-name>
+		<servlet-class>nl.captcha.servlet.ChineseCaptchaServlet</servlet-class>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChineseCaptcha</servlet-name>
+		<url-pattern>/chineseCaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>StickyCaptchaServlet</servlet-name>
+		<servlet-class>nl.captcha.servlet.StickyCaptchaServlet</servlet-class>		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StickyCaptchaServlet</servlet-name>
+		<url-pattern>/stickyCaptchaServlet.jpg</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	   <servlet-name>displayImage</servlet-name>
+	   <servlet-class>displayImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>displayImage</servlet-name>
+	    <url-pattern>/displayImage/*</url-pattern>
+	</servlet-mapping>
+  
+  
+  	<servlet>
+	   <servlet-name>UploadServlet</servlet-name>
+	   <servlet-class>com.synechron.prm.upload.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>UploadServlet</servlet-name>
+	    <url-pattern>/UploadServlet</url-pattern>
+	</servlet-mapping>
+	
+    <filter>
+  <filter-name>adminAccessFilter</filter-name>
+  <filter-class>com.synechron.prm.controller.AuthorizedAccessFilter</filter-class>
+  
+  <init-param>
+    <param-name>roles</param-name>
+    <param-value>administrator</param-value>
+  </init-param>
+  
+  <init-param>
+    <param-name>loginPath</param-name>
+    <param-value>login.do</param-value>
+  </init-param>
+  
+  <init-param>
+    <param-name>loginPage</param-name>
+    <param-value>/jsp/home.jsp</param-value>
+  </init-param>
+  
+  <init-param>
+    <param-name>onError</param-name>
+    <param-value>/jsp/home.jsp</param-value>
+  </init-param>
+  
+  <init-param>
+    <param-name>unsecurePages</param-name>
+    <param-value>/home.jsp,/register.jsp,/login.do,/UserHome.jsp,.gif,.png,.jpeg,.jpg,.bmp,.css,.js,/UploadServlet,.html,tiny.jsp,.svg,.woff,.ttf</param-value>
+  </init-param>
+  <init-param>
+    <param-name>isResource</param-name>
+    <param-value>.jsp,Servlet,.do,.gif,.png,.jpeg,.jpg,.css,.js,UploadServlet,.html,.svg,.woff,.ttf</param-value>
+  </init-param>
+   <init-param>
+    <param-name>securePages</param-name>
+    <param-value>/secure/</param-value>
+  </init-param>
+</filter>
+
+<filter-mapping>
+  <filter-name>adminAccessFilter</filter-name>
+  <url-pattern>/secure/*</url-pattern>
+</filter-mapping>
+
+
+<filter>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>UrlRewriteFilter</filter-name>
+    <url-pattern>/chunks/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+
+   <error-page>
+       <error-code>404</error-code>
+       <location>/chunks/article/test/1</location>
+   </error-page>
+
+
+</web-app>

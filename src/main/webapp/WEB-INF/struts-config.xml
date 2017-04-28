@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+ "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="LoginForm" type="com.synechron.prm.form.RegisterForm" />
+		
+		<form-bean name="User" type="com.synechron.prm.form.UserForm" />
+		<form-bean name="articleBean" type="com.synechron.prm.form.ArticleFormBean" />
+		
+		
+		<form-bean name="GraphResult" type="com.synechron.prm.form.GraphResultForm" />
+
+		<form-bean name="Awards" type="com.synechron.prm.form.AwardForm" />
+
+		<form-bean name="Resource" type="com.synechron.prm.form.AllocateForm" />
+		<form-bean name="ViewResource" type="com.synechron.prm.form.AllocateForm" />
+
+		<form-bean name="Project" type="com.synechron.prm.form.ProjectForm" />
+		<form-bean name="ViewProject" type="com.synechron.prm.form.ProjectForm" />
+	</form-beans>
+
+	<global-exceptions />
+	<global-forwards>
+	<forward  name="User" path="/userList" ></forward>
+	</global-forwards>
+
+
+	<action-mappings>
+		<action name="LoginForm" path="/login" validate="true"
+			type="com.synechron.prm.controller.RegisterAction" scope="request">
+			<forward name="success" path="/secure/UserHome.jsp" />
+			<forward name="failure" path="/jsp/home.jsp" />
+		</action>
+		
+		
+
+		<action name="Logout" path="/logout"
+			type="com.synechron.prm.controller.LogOutAction" scope="session">
+			<forward name="success" path="/jsp/home.jsp" />
+		</action>
+
+
+		<action name="LoginForm" path="/login" validate="true"
+			type="com.synechron.prm.controller.RegisterAction" scope="request">
+			<forward name="success" path="/secure/UserHome.jsp" />
+			<forward name="failure" path="/jsp/home.jsp" />
+		</action>
+		
+		<action name="User" path="/registerUser" parameter="method"
+			type="com.synechron.prm.controller.RegisterUserAction">
+			<forward name="input" path="/secure/registerUser.jsp" />
+			<forward name="view_success" path="/secure/listuser.jsp" />
+			<forward name="view_failure" path="/secure/registerUser.jsp" />
+			<forward name="add_success" path="/secure/captcha/captchasubmit.jsp" />
+			<forward name="add_failure" path="/secure/addresource.jsp" />
+			<forward name="update_success" path="/secure/listuser.jsp" />
+			<forward name="update_failure" path="/secure/updateuser.jsp" />
+			<forward name="delete_success" path="/secure/listuser.jsp" />
+			<forward name="delete_failure" path="/secure/listuser.jsp" />
+			<forward name="view_update_success" path="/secure/updateuser.jsp" />
+			<forward name="view_update_failure" path="/secure/listuser.jsp" />
+		</action>
+		
+		<action name="articleBean" path="/addArticleDoc" parameter="method"
+			type="com.synechron.prm.controller.AddArticleAction" scope="request">
+			<forward name="success" path="/secure/registerUser.jsp" />
+			<forward name="fail" path="addArticleDoc.do" />
+			<forward name="getDetailSuccess" path="/secure/awardlist.jsp" />
+			<forward name="getDetailFailure" path="/secure/awardlist.jsp" />
+			<forward name="viewPerticularSuccess" path="/secure/awardresult.jsp" />
+			<forward name="viewMonthSuccess" path="/secure/awardformonth.jsp" />
+			<forward name="viewUpdateSuccess" path="/secure/updateaward.jsp" />
+			<forward name="update_success" path="/secure/awardlist.jsp" />
+			<forward name="update_failure" path="/secure/awardform.jsp" />
+			<forward name="delete_success" path="/secure/awardlist.jsp" />
+			<forward name="delete_failure" path="/secure/awardform.jsp" />
+		</action>
+		
+		<action name="articleBean" path="/articleResult" 
+			type="com.synechron.prm.controller.ArticleResultAction" scope="request">
+			<forward name="success" path="/jsp/articleResult.jsp" />
+		</action>
+		
+		<action name="User" path="/editUser" validate="true"
+			type="com.synechron.prm.controller.EditUserAction" scope="request">
+			<forward name="editUser" path="/secure/registerUser.jsp" />
+			<forward name="failure" path="/jsp/home.jsp" />
+		</action>
+		
+		<action name="User" path="/userList"
+			type="com.synechron.prm.controller.UserListAction" scope="request">
+			<forward name="success" path="/secure/userlist.jsp" />
+		</action>
+		
+		
+		<action name="articleBean" path="/viewArticle" parameter="method"
+			type="com.synechron.prm.controller.ViewArticleAction" scope="request">
+			<forward name="success" path="/jsp/viewArticle.jsp" />
+		</action>
+		
+		
+		<action name="articleBean" path="/uploadArticle" parameter="method"
+			type="com.synechron.prm.controller.ViewArticleAction" scope="request">
+			<forward name="success" path="/jsp/viewArticle.jsp" />
+		</action>
+		
+		
+
+		<action name="GraphResult" path="/graph" parameter="method"
+			type="com.synechron.prm.controller.GraphResultAction" scope="session">
+			<forward name="success" path="/secure/GraphResults.jsp" />
+			<forward name="failure" path="/secure/UserHome.jsp" />
+			<forward name="successMaturity" path="/secure/maturity.jsp" />
+			<forward name="failureMaturity" path="/secure/UserHome.jsp" />
+			<forward name="successGraphAdmin" path="/secure/bugchart.jsp" />
+			<forward name="successMaturityAdmin" path="/secure/qualitymodule.jsp" />
+		</action>
+
+		<action name="Awards" path="/award" parameter="method"
+			type="com.synechron.prm.controller.AwardAction" scope="session">
+			<forward name="success" path="/secure/awardlist.jsp" />
+			<forward name="failure" path="/secure/awardform.jsp" />
+			<forward name="getDetailSuccess" path="/secure/awardlist.jsp" />
+			<forward name="getDetailFailure" path="/secure/awardlist.jsp" />
+			<forward name="viewPerticularSuccess" path="/secure/awardresult.jsp" />
+			<forward name="viewMonthSuccess" path="/secure/awardformonth.jsp" />
+			<forward name="viewUpdateSuccess" path="/secure/updateaward.jsp" />
+			<forward name="update_success" path="/secure/awardlist.jsp" />
+			<forward name="update_failure" path="/secure/awardform.jsp" />
+			<forward name="delete_success" path="/secure/awardlist.jsp" />
+			<forward name="delete_failure" path="/secure/awardform.jsp" />
+		</action>
+
+		<action name="Resource" path="/resource" parameter="method"
+			type="com.synechron.prm.controller.AllocateAction">
+			<forward name="success" path="/secure/list.jsp" />
+			<forward name="failure" path="/secure/addresource.jsp" />
+			<forward name="update_success" path="/secure/list.jsp" />
+			<forward name="update_failure" path="/secure/updateresource.jsp" />
+			<forward name="delete_success" path="/secure/list.jsp" />
+			<forward name="delete_failure" path="/secure/list.jsp" />
+			<forward name="view_update_success" path="/secure/updateresource.jsp" />
+			<forward name="view_update_failure" path="/secure/list.jsp" />
+			<forward name="addResourceView" path="/secure/addresource.jsp" />
+		</action>
+
+		<action name="ViewResource" path="/viewResource"
+			type="com.synechron.prm.controller.ViewResource" scope="request">
+			<forward name="success" path="/secure/list.jsp" />
+			<forward name="failure" path="/secure/list.jsp" />
+		</action>
+
+		<action name="Project" path="/project" parameter="method"
+			type="com.synechron.prm.controller.ProjectAction" scope="session">
+			<forward name="success" path="/secure/projectlist.jsp" />
+			<forward name="failure" path="/secure/project.jsp" />
+			<forward name="update_success" path="/secure/projectlist.jsp" />
+			<forward name="update_failure" path="/secure/updateproject.jsp" />
+			<forward name="delete_success" path="/secure/projectlist.jsp" />
+			<forward name="delete_failure" path="/secure/projectlist.jsp" />
+			<forward name="view_update_success" path="/secure/updateproject.jsp" />
+		</action>
+
+		<action name="ViewProject" path="/viewProject"
+			type="com.synechron.prm.controller.ViewProject" scope="request">
+			<forward name="success" path="/secure/projectlist.jsp" />
+			<forward name="failure" path="/secure/projectlist.jsp" />
+		</action>
+	</action-mappings>
+	<controller processorClass="org.apache.struts.action.RequestProcessor" />
+	<message-resources parameter="ApplicationResources" />
+
+</struts-config>

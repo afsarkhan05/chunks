@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 21, 2012 4:19:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.synechron.prm.bean.ArticleMaster" table="article_master">
+        <id name="articleId" type="java.lang.Integer">
+            <column name="articleId" />
+            <generator class="increment" />
+        </id>
+        <property name="articleName" type="string">
+            <column name="articleName" length="45" not-null="true" />
+        </property>
+        <property name="articleDesc" type="string">
+            <column name="articleDesc" sql-type="longtext"/>
+        </property>
+      
+        <property name="isActive" type="string">
+            <column name="isActive" length="3" />
+        </property>
+        <property name="modifiedDate" type="string">
+            <column name="modifiedDate" length="45" not-null="true" />
+        </property>
+        <property name="createdDate" type="string">
+            <column name="createdDate" length="45" not-null="true" />
+        </property>
+        <property name="categoryId" type="java.lang.Integer">
+			<column name="categoryId" />
+	 </property>
+	 <property name="isFeature" type="string">
+            <column name="isFeature" length="3" />
+        </property>
+	 <property name="articleLocation" type="string">
+            <column name="articleLocation" length="128" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="15" />
+        </property>
+        <property name="articleTitle" type="string">
+            <column name="articleTitle" length="45" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
