@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+.heading {
+	font-family: sans-serif;
+	font-style: normal;
+	font-weight: bolder;
+	font-size: 36px;
+	line-height: 100%;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none;
+	text-transform: none;
+	text-align: center;
+	text-indent: 0ex;
+	color: #333333;
+}
+
+.description {
+	color: #333333;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	line-height: 150%;
+	font-size: 26px;
+
+}
+
+.descTd {
+	padding-left: 5em;
+	font-size: 22px;
+}
+
+.empName {
+	color: #333333;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size: 24px;
+	font-weight: bolder;
+}
+
+.empId {
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #333333;
+}
+
+.firstPage {
+	color: #333333;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-size: 48px;
+};
+

@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+.heading {
+	color: #333333;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	line-height: 150%;
+	text-align: center;
+	font-size: 28px;
+	
+}
+.desc {
+	color: #333333;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	line-height: 150%;
+	font-size: 16px;
+	width: 900px;
+}
+
+
+

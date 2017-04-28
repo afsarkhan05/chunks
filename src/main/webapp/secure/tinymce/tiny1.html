@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+<script type="text/javascript" src="tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea",
+	theme: "modern",
+	  width: "15",
+       height: "20",
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+});
+
+function showAlert(id){
+var mycontent = tinymce.get('content'+id).getContent();
+// Get the HTML contents of the currently active editor
+//tinymce.activeEditor.getContent();
+
+// Get the raw contents of the currently active editor
+//tinymce.activeEditor.getContent({format : 'raw'});
+
+// Get content of a specific editor:
+//tinymce.get('content id').getContent()
+
+var divObj = document.getElementById("myHtml"+id);
+divObj.innerHTML = mycontent;
+divObj.display = "block";
+
+
+alert(mycontent);
+
+return false;
+}
+
+function show(id){
+
+document.getElementById(id).display = "block";
+
+}
+</script>
+
+<form method="post">
+    <textarea name="content1" id="content1" rows="2" cols="10"></textarea>
+	<input type="button" value="Submit me" onclick="showAlert('1');"/>
+	<div id="myHtml1" /><input type="button" value="Add One More" onclick="show('two');"/>
+
+
+<div style="display:none" id="two">
+
+    <textarea name="content2" id="content2"></textarea>
+	<input type="button" value="Submit me" onclick="showAlert('2');"/>
+	<div id="myHtml2" /><input type="button" value="Add One More" onclick="show('three');"/>
+</div>
+
+<div style="display:none" id="three">
+
+	<textarea name="content3" id="content3"></textarea>
+	<input type="button" value="Submit me" onclick="showAlert('3');"/>
+	<div id="myHtml3" />
+
+</div>
+
+
+</form>
+</body>
+</html>
