@@ -1,25 +1,17 @@
 package com.synechron.prm.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import net.sf.json.JSONObject;
-
-import org.apache.struts.action.Action;
+import com.synechron.prm.dao.ProjectDTO;
+import com.synechron.prm.form.GraphResultForm;
+import com.synechron.prm.util.Helper;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.synechron.prm.dao.Dao;
-import com.synechron.prm.dao.ProjectDTO;
-import com.synechron.prm.form.GraphResultForm;
-import com.synechron.prm.util.Helper;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class GraphResultAction extends DispatchAction {
 

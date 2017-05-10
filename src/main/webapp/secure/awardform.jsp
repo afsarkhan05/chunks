@@ -4,9 +4,9 @@
 <html>
 <head>
 
-<%@ taglib uri="/WEB-INF/lib/struts-bean.tld" prefix="bean"%>
-<%@ taglib uri="/WEB-INF/lib/struts-html.tld" prefix="html"%>
-<%@ taglib uri="/WEB-INF/lib/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <link type="text/css" rel="stylesheet" href="../css/style.css"
 	media="screen" />

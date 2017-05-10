@@ -1,18 +1,16 @@
 package com.synechron.prm.dao;
 
-import java.util.Iterator;
-import java.util.List;
-
+import com.synechron.prm.util.CustomDate;
+import com.synechron.prm.util.HibernateUtil;
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StandardBasicTypes;
 
-import com.synechron.prm.util.CustomDate;
-import com.synechron.prm.util.HibernateUtil;
+import java.util.Iterator;
+import java.util.List;
 
 public class GraphDao {
 
@@ -71,8 +69,8 @@ public class GraphDao {
 					" GROUP BY b.projectid";
 			
 			query=session.createSQLQuery(sqlQuery)
-					.addScalar("projectid", Hibernate.INTEGER)
-					.addScalar("Score", Hibernate.INTEGER);
+					.addScalar("projectid", StandardBasicTypes.INTEGER)
+					.addScalar("Score", StandardBasicTypes.INTEGER);
 				
 
 			result=query.list();
@@ -131,8 +129,8 @@ public class GraphDao {
 						" GROUP BY b.projectid";
 				
 				query=session.createSQLQuery(sqlQuery)
-					.addScalar("projectid", Hibernate.INTEGER)
-					.addScalar("Score", Hibernate.INTEGER);
+					.addScalar("projectid", StandardBasicTypes.INTEGER)
+					.addScalar("Score", StandardBasicTypes.INTEGER);
 
 
 			result=query.list();
@@ -196,8 +194,8 @@ public class GraphDao {
 			
 			//System.out.println(sqlQuery);
 			query=session.createSQLQuery(sqlQuery)
-					.addScalar("monthDate", Hibernate.INTEGER)
-					.addScalar("Score", Hibernate.INTEGER);
+					.addScalar("monthDate", StandardBasicTypes.INTEGER)
+					.addScalar("Score", StandardBasicTypes.INTEGER);
 
 			result=query.list();
 			Iterator resultIterator = result.iterator();
@@ -257,8 +255,8 @@ public class GraphDao {
 				
 				
 				query=session.createSQLQuery(sqlQuery)
-					.addScalar("Month", Hibernate.INTEGER)
-					.addScalar("Score", Hibernate.INTEGER);
+					.addScalar("Month", StandardBasicTypes.INTEGER)
+					.addScalar("Score", StandardBasicTypes.INTEGER);
 
 			result=query.list();
 			Iterator resultIterator = result.iterator();

@@ -1,24 +1,14 @@
 package com.synechron.prm.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.synechron.prm.dao.Dao;
+import com.synechron.prm.dao.GraphDTO;
+import com.synechron.prm.util.Helper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import com.synechron.prm.dao.Dao;
-import com.synechron.prm.dao.GraphDTO;
-import com.synechron.prm.dao.ProjectDTO;
-import com.synechron.prm.util.Helper;
+import java.io.IOException;
 
 
 
@@ -38,7 +28,7 @@ public class MaturityServlet extends HttpServlet {
 			throws IOException, ServletException {
 
 
-		String id=request.getParameter("id");
+		/*String id=request.getParameter("id");
 		String bugTool=request.getParameter("bugTool");
 		
 		System.out.println("Project ID:: " + id + " Tool:: " + bugTool);
@@ -127,8 +117,8 @@ public class MaturityServlet extends HttpServlet {
 		//System.out.println("json object :"+json.toString());
 
 		pw.close();
+	*/
 	}
-
 
 
 }

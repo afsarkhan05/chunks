@@ -1,32 +1,23 @@
 package com.synechron.prm.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
-import java.util.List;
-
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import com.synechron.prm.bean.ArticleMaster;
 import com.synechron.prm.bean.AuthMaster;
 import com.synechron.prm.bean.CategoryMaster;
 import com.synechron.prm.bean.RecoverMaster;
-
-import com.synechron.prm.form.AllocateForm;
 import com.synechron.prm.form.ArticleFormBean;
-import com.synechron.prm.form.AwardForm;
 import com.synechron.prm.form.CategoryFormBean;
-import com.synechron.prm.form.ProjectForm;
 import com.synechron.prm.form.RegisterForm;
 import com.synechron.prm.form.UserForm;
 import com.synechron.prm.util.CommonConstants;
 import com.synechron.prm.util.CustomDate;
 import com.synechron.prm.util.HibernateUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.type.StandardBasicTypes;
+
+import java.util.*;
 
 
 
@@ -84,7 +75,7 @@ public class Dao
 			transaction=session.beginTransaction();
 
 			Query query=session.createSQLQuery("select isAdmin from auth_master where userName = :userName")
-					.addScalar("isAdmin", Hibernate.STRING);	
+					.addScalar("isAdmin", StandardBasicTypes.STRING);
 			query.setParameter("userName", userName);
 
 			result = (String) query.uniqueResult(); 
@@ -598,7 +589,7 @@ public class Dao
 			transaction = session.beginTransaction(); 
 			String sql="select ProjectName from projectmaster where id ="+ id;
 			Query queryResult = session.createSQLQuery(sql)
-					.addScalar("ProjectName", Hibernate.TEXT);
+					.addScalar("ProjectName", StandardBasicTypes.TEXT);
 
 			result=queryResult.list();
 			name=result.toString();
@@ -1062,7 +1053,7 @@ public class Dao
 					" WHERE a.projectid = b.projectid  AND a.modifiedDate = b.modifiedDate ";
 
 			Query query = session.createSQLQuery(sqlQuery)
-					.addScalar("count", Hibernate.INTEGER);
+					.addScalar("count", StandardBasicTypes.INTEGER);
 
 			bugzillaCount = (Integer) query.uniqueResult();
 
@@ -1087,7 +1078,7 @@ public class Dao
 					" WHERE a.projectid = b.projectid  AND a.modifiedDate = b.modifiedDate ";
 
 			Query query1 = session.createSQLQuery(sqlQuery1)
-					.addScalar("count", Hibernate.INTEGER);
+					.addScalar("count", StandardBasicTypes.INTEGER);
 
 			redmind = (Integer) query1.uniqueResult();
 
@@ -1118,7 +1109,7 @@ public class Dao
 					" WHERE b.modifiedDate =a.maxDate AND projectid="+pid+"";
 			//System.out.println(sqlQuery);
 			Query query = session.createSQLQuery(sqlQuery)
-					.addScalar("bug_count", Hibernate.INTEGER);
+					.addScalar("bug_count", StandardBasicTypes.INTEGER);
 
 			bugzillaCount = (Integer) query.uniqueResult();
 
@@ -1151,7 +1142,7 @@ public class Dao
 					" WHERE b.modifiedDate =a.maxDate AND projectid="+pid+"";
 
 			Query query = session.createSQLQuery(sqlQuery)
-					.addScalar("bug_count", Hibernate.INTEGER);
+					.addScalar("bug_count", StandardBasicTypes.INTEGER);
 
 
 			redmindCount = (Integer) query.uniqueResult();
@@ -1188,8 +1179,8 @@ public class Dao
 						" WHERE a.projectid = b.projectid  AND a.modifiedDate = b.modifiedDate GROUP BY  projectid";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("projectid", Hibernate.INTEGER)
-						.addScalar("bug_count", Hibernate.INTEGER);
+						.addScalar("projectid", StandardBasicTypes.INTEGER)
+						.addScalar("bug_count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				bugzillaArray=new int[arrayLength];
@@ -1227,8 +1218,8 @@ public class Dao
 						" GROUP BY MONTH(modifiedDate)";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Month", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Month", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 				result=query.list();
 
 
@@ -1266,8 +1257,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Week", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Week", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				bugzillaArray=new int[]{0,0, 0,0, 0};
@@ -1308,8 +1299,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Day", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Day", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				bugzillaArray=new int[]{0,0, 0,0, 0,0, 0};
@@ -1354,18 +1345,18 @@ public class Dao
 						" GROUP BY HOUR(modifiedDate), projectid) a";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("0-1", Hibernate.INTEGER)
-						.addScalar("2-3", Hibernate.INTEGER)
-						.addScalar("4-5", Hibernate.INTEGER)
-						.addScalar("6-7", Hibernate.INTEGER)
-						.addScalar("8-9", Hibernate.INTEGER)
-						.addScalar("10-11", Hibernate.INTEGER)
-						.addScalar("12-13", Hibernate.INTEGER)
-						.addScalar("14-15", Hibernate.INTEGER)
-						.addScalar("16-17", Hibernate.INTEGER)
-						.addScalar("18-19", Hibernate.INTEGER)
-						.addScalar("20-21", Hibernate.INTEGER)
-						.addScalar("22-23", Hibernate.INTEGER);
+						.addScalar("0-1", StandardBasicTypes.INTEGER)
+						.addScalar("2-3", StandardBasicTypes.INTEGER)
+						.addScalar("4-5", StandardBasicTypes.INTEGER)
+						.addScalar("6-7", StandardBasicTypes.INTEGER)
+						.addScalar("8-9", StandardBasicTypes.INTEGER)
+						.addScalar("10-11", StandardBasicTypes.INTEGER)
+						.addScalar("12-13", StandardBasicTypes.INTEGER)
+						.addScalar("14-15", StandardBasicTypes.INTEGER)
+						.addScalar("16-17", StandardBasicTypes.INTEGER)
+						.addScalar("18-19", StandardBasicTypes.INTEGER)
+						.addScalar("20-21", StandardBasicTypes.INTEGER)
+						.addScalar("22-23", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 
@@ -1420,8 +1411,8 @@ public class Dao
 						" WHERE a.projectid = b.projectid  AND a.modifiedDate = b.modifiedDate GROUP BY  projectid";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("projectid", Hibernate.INTEGER)
-						.addScalar("bug_count", Hibernate.INTEGER);
+						.addScalar("projectid", StandardBasicTypes.INTEGER)
+						.addScalar("bug_count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				redmindArray=new int[arrayLength];
@@ -1458,8 +1449,8 @@ public class Dao
 						" GROUP BY MONTH(modifiedDate)";
 				
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Month", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Month", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 				result=query.list();
 
 
@@ -1497,8 +1488,8 @@ public class Dao
 				
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Week", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Week", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				redmindArray=new int[]{0,0, 0,0, 0};
@@ -1542,8 +1533,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Day", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Day", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				redmindArray=new int[]{0,0, 0,0, 0,0, 0};
@@ -1588,18 +1579,18 @@ public class Dao
 						" GROUP BY HOUR(modifiedDate), projectid) a";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("0-1", Hibernate.INTEGER)
-						.addScalar("2-3", Hibernate.INTEGER)
-						.addScalar("4-5", Hibernate.INTEGER)
-						.addScalar("6-7", Hibernate.INTEGER)
-						.addScalar("8-9", Hibernate.INTEGER)
-						.addScalar("10-11", Hibernate.INTEGER)
-						.addScalar("12-13", Hibernate.INTEGER)
-						.addScalar("14-15", Hibernate.INTEGER)
-						.addScalar("16-17", Hibernate.INTEGER)
-						.addScalar("18-19", Hibernate.INTEGER)
-						.addScalar("20-21", Hibernate.INTEGER)
-						.addScalar("22-23", Hibernate.INTEGER);
+						.addScalar("0-1", StandardBasicTypes.INTEGER)
+						.addScalar("2-3", StandardBasicTypes.INTEGER)
+						.addScalar("4-5", StandardBasicTypes.INTEGER)
+						.addScalar("6-7", StandardBasicTypes.INTEGER)
+						.addScalar("8-9", StandardBasicTypes.INTEGER)
+						.addScalar("10-11", StandardBasicTypes.INTEGER)
+						.addScalar("12-13", StandardBasicTypes.INTEGER)
+						.addScalar("14-15", StandardBasicTypes.INTEGER)
+						.addScalar("16-17", StandardBasicTypes.INTEGER)
+						.addScalar("18-19", StandardBasicTypes.INTEGER)
+						.addScalar("20-21", StandardBasicTypes.INTEGER)
+						.addScalar("22-23", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 
@@ -1667,8 +1658,8 @@ public class Dao
 				//System.out.println(sqlQuery);
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Month", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Month", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 
@@ -1707,8 +1698,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Week", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Week", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				bugZillaArray=new int[]{0,0, 0,0, 0};
@@ -1759,8 +1750,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("weekday", Hibernate.INTEGER)
-						.addScalar("count", Hibernate.INTEGER);
+						.addScalar("weekday", StandardBasicTypes.INTEGER)
+						.addScalar("count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				bugZillaArray=new int[]{0,0, 0,0, 0,0, 0};
@@ -1804,18 +1795,18 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("0-1", Hibernate.INTEGER)
-						.addScalar("2-3", Hibernate.INTEGER)
-						.addScalar("4-5", Hibernate.INTEGER)
-						.addScalar("6-7", Hibernate.INTEGER)
-						.addScalar("8-9", Hibernate.INTEGER)
-						.addScalar("10-11", Hibernate.INTEGER)
-						.addScalar("12-13", Hibernate.INTEGER)
-						.addScalar("14-15", Hibernate.INTEGER)
-						.addScalar("16-17", Hibernate.INTEGER)
-						.addScalar("18-19", Hibernate.INTEGER)
-						.addScalar("20-21", Hibernate.INTEGER)
-						.addScalar("22-23", Hibernate.INTEGER);
+						.addScalar("0-1", StandardBasicTypes.INTEGER)
+						.addScalar("2-3", StandardBasicTypes.INTEGER)
+						.addScalar("4-5", StandardBasicTypes.INTEGER)
+						.addScalar("6-7", StandardBasicTypes.INTEGER)
+						.addScalar("8-9", StandardBasicTypes.INTEGER)
+						.addScalar("10-11", StandardBasicTypes.INTEGER)
+						.addScalar("12-13", StandardBasicTypes.INTEGER)
+						.addScalar("14-15", StandardBasicTypes.INTEGER)
+						.addScalar("16-17", StandardBasicTypes.INTEGER)
+						.addScalar("18-19", StandardBasicTypes.INTEGER)
+						.addScalar("20-21", StandardBasicTypes.INTEGER)
+						.addScalar("22-23", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 
@@ -1881,8 +1872,8 @@ public class Dao
 						" GROUP BY MONTH(modifiedDate)";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Month", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Month", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 
@@ -1921,8 +1912,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("Week", Hibernate.INTEGER)
-						.addScalar("Count", Hibernate.INTEGER);
+						.addScalar("Week", StandardBasicTypes.INTEGER)
+						.addScalar("Count", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 				redMindArray=new int[]{0,0, 0,0, 0};
@@ -1963,8 +1954,8 @@ public class Dao
 
 				//System.out.println(sqlQuery);
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("weekday", Hibernate.INTEGER)
-						.addScalar("count", Hibernate.INTEGER);
+						.addScalar("weekday", StandardBasicTypes.INTEGER)
+						.addScalar("count", StandardBasicTypes.INTEGER);
 
 
 				result=query.list();
@@ -2008,18 +1999,18 @@ public class Dao
 						" WHERE  projectid=" + pid + " AND modifiedDate BETWEEN '"+customDate.getTodayStartTime()  + "' AND '"+  customDate.getTodayEndTime()  + "'";
 
 				query=session.createSQLQuery(sqlQuery)
-						.addScalar("0-1", Hibernate.INTEGER)
-						.addScalar("2-3", Hibernate.INTEGER)
-						.addScalar("4-5", Hibernate.INTEGER)
-						.addScalar("6-7", Hibernate.INTEGER)
-						.addScalar("8-9", Hibernate.INTEGER)
-						.addScalar("10-11", Hibernate.INTEGER)
-						.addScalar("12-13", Hibernate.INTEGER)
-						.addScalar("14-15", Hibernate.INTEGER)
-						.addScalar("16-17", Hibernate.INTEGER)
-						.addScalar("18-19", Hibernate.INTEGER)
-						.addScalar("20-21", Hibernate.INTEGER)
-						.addScalar("22-23", Hibernate.INTEGER);
+						.addScalar("0-1", StandardBasicTypes.INTEGER)
+						.addScalar("2-3", StandardBasicTypes.INTEGER)
+						.addScalar("4-5", StandardBasicTypes.INTEGER)
+						.addScalar("6-7", StandardBasicTypes.INTEGER)
+						.addScalar("8-9", StandardBasicTypes.INTEGER)
+						.addScalar("10-11", StandardBasicTypes.INTEGER)
+						.addScalar("12-13", StandardBasicTypes.INTEGER)
+						.addScalar("14-15", StandardBasicTypes.INTEGER)
+						.addScalar("16-17", StandardBasicTypes.INTEGER)
+						.addScalar("18-19", StandardBasicTypes.INTEGER)
+						.addScalar("20-21", StandardBasicTypes.INTEGER)
+						.addScalar("22-23", StandardBasicTypes.INTEGER);
 
 				result=query.list();
 

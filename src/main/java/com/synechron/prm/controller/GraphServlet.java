@@ -1,32 +1,22 @@
 package com.synechron.prm.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.synechron.prm.dao.Dao;
+import com.synechron.prm.dao.GraphDTO;
+import com.synechron.prm.util.Helper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import com.synechron.prm.dao.Dao;
-import com.synechron.prm.dao.GraphDTO;
-import com.synechron.prm.dao.ProjectDTO;
-import com.synechron.prm.util.Helper;
+import java.io.IOException;
 
 
 
 public class GraphServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	GraphDTO dto=new GraphDTO();
-	Dao dao=new Dao();
-	Helper helper=new Helper();
+	GraphDTO dto = new GraphDTO();
+	Dao dao = new Dao();
+	Helper helper = new Helper();
 
 	public GraphServlet() {
 		super();
@@ -35,7 +25,7 @@ public class GraphServlet extends HttpServlet {
 
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException {/*
 
 
 		String id=request.getParameter("id");
@@ -180,8 +170,8 @@ public class GraphServlet extends HttpServlet {
 		
 
 		pw.close();
-	}
-
+	*/
+}
 
 
 }

@@ -17,46 +17,47 @@
   <welcome-file-list>
     <welcome-file>/jsp/home.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>GraphServlet</display-name>
-    <servlet-name>GraphServlet</servlet-name>
-    <servlet-class>com.synechron.prm.controller.GraphServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GraphServlet</servlet-name>
-    <url-pattern>/GraphServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MaturityServlet</display-name>
-    <servlet-name>MaturityServlet</servlet-name>
-    <servlet-class>com.synechron.prm.controller.MaturityServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MaturityServlet</servlet-name>
-    <url-pattern>/MaturityServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AwardServlet</display-name>
-    <servlet-name>AwardServlet</servlet-name>
-    <servlet-class>com.synechron.prm.controller.AwardServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AwardServlet</servlet-name>
-    <url-pattern>/AwardServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ImageServlet</display-name>
-    <servlet-name>ImageServlet</servlet-name>
-    <servlet-class>com.synechron.prm.controller.ImageServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ImageServlet</servlet-name>
-    <url-pattern>/ImageServlet</url-pattern>
-  </servlet-mapping>
+    <!--
+      <servlet>
+        <description></description>
+        <display-name>GraphServlet</display-name>
+        <servlet-name>GraphServlet</servlet-name>
+        <servlet-class>com.synechron.prm.controller.GraphServlet</servlet-class>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>GraphServlet</servlet-name>
+        <url-pattern>/GraphServlet</url-pattern>
+      </servlet-mapping>
+      <servlet>
+        <description></description>
+        <display-name>MaturityServlet</display-name>
+        <servlet-name>MaturityServlet</servlet-name>
+        <servlet-class>com.synechron.prm.controller.MaturityServlet</servlet-class>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>MaturityServlet</servlet-name>
+        <url-pattern>/MaturityServlet</url-pattern>
+      </servlet-mapping>
+      <servlet>
+        <description></description>
+        <display-name>AwardServlet</display-name>
+        <servlet-name>AwardServlet</servlet-name>
+        <servlet-class>com.synechron.prm.controller.AwardServlet</servlet-class>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>AwardServlet</servlet-name>
+        <url-pattern>/AwardServlet</url-pattern>
+      </servlet-mapping>
+      <servlet>
+        <description></description>
+        <display-name>ImageServlet</display-name>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>com.synechron.prm.controller.ImageServlet</servlet-class>
+      </servlet>
+      <servlet-mapping>
+        <servlet-name>ImageServlet</servlet-name>
+        <url-pattern>/ImageServlet</url-pattern>
+      </servlet-mapping>
   
   
   	<servlet>
@@ -85,7 +86,7 @@
 		<servlet-name>StickyCaptchaServlet</servlet-name>
 		<url-pattern>/stickyCaptchaServlet.jpg</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 	   <servlet-name>displayImage</servlet-name>
 	   <servlet-class>displayImage</servlet-class>
@@ -94,7 +95,7 @@
 	    <servlet-name>displayImage</servlet-name>
 	    <url-pattern>/displayImage/*</url-pattern>
 	</servlet-mapping>
-  
+  -->
   
   	<servlet>
 	   <servlet-name>UploadServlet</servlet-name>
