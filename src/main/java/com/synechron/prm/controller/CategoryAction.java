@@ -32,7 +32,7 @@ public class CategoryAction extends DispatchAction
 	}*/
 	
 	
-	public ActionForward view(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response)throws Exception
+	public ActionForward list(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response)throws Exception
 	{
 
 		Helper helper=new Helper();
@@ -40,8 +40,8 @@ public class CategoryAction extends DispatchAction
 		List<CategoryDTO> list=new ArrayList<CategoryDTO>();		
 		list= helper.listCategory();
 		request.setAttribute("categoryList",list);
-
-
+		
+		
 		if(list!=null)
 			return mapping.findForward("list");
 		else
@@ -64,7 +64,7 @@ public class CategoryAction extends DispatchAction
 		List<CategoryDTO> list=new ArrayList<CategoryDTO>();		
 		list= helper.listCategory();
 		request.setAttribute("categoryList",list);
-
+		
 		if(outcome)
 			return mapping.findForward("list");
 		else
@@ -133,7 +133,7 @@ public class CategoryAction extends DispatchAction
 		System.out.println("CategoryAction.updateView categoryId:: " +categoryId);
 		categoryFormBean = helper.getCategoryDetail(categoryFormBean);
 		categoryFormBean.setEdit("yes");
-
+		
 		if(categoryFormBean!=null)
 			return mapping.findForward("update");
 		else

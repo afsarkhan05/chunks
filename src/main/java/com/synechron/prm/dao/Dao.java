@@ -11,7 +11,6 @@ import com.synechron.prm.form.UserForm;
 import com.synechron.prm.util.CommonConstants;
 import com.synechron.prm.util.CustomDate;
 import com.synechron.prm.util.HibernateUtil;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,8 +19,7 @@ import org.hibernate.type.StandardBasicTypes;
 import java.util.*;
 
 
-
-public class Dao 
+public class Dao
 {
 
 	CustomDate customDate=new CustomDate();

@@ -29,7 +29,7 @@ public class RegisterAction extends Action
 			String userId = null;
 			Helper helper=new Helper();
 			List loginDetailList = helper.loginCheck(registerForm);
-			
+			//loginDetailList.add("afsar");loginDetailList.add("yes");loginDetailList.add("1");
 			if(loginDetailList !=null && ! loginDetailList.isEmpty()){
 				Object[] loginArr = (Object[]) loginDetailList.get(0);
 				isValidUser = loginArr[0].toString() != null ? true : false;
@@ -46,6 +46,7 @@ public class RegisterAction extends Action
 				if (isValidUser) {
 					session.setAttribute("userName", registerForm.getUsername());
 					session.setAttribute("userId", userId);
+					session.setAttribute("admin", isAdmin);
 					result = "success";
 						
 					String togoURL  = (String) session.getAttribute("togoURL");

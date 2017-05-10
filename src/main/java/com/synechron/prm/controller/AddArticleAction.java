@@ -22,6 +22,7 @@ import com.synechron.prm.dao.ArticleDTO;
 import com.synechron.prm.form.ArticleFormBean;
 import com.synechron.prm.util.CommonConstants;
 import com.synechron.prm.util.Helper;
+import com.synechron.prm.util.OptionItem;
 
 
 
@@ -189,12 +190,44 @@ public class AddArticleAction extends DispatchAction {
 		System.out.println("ArticleAction.updateView articleId:: " +articleId);
 		articleFormBean = helper.getArticleDetail(articleFormBean);
 		articleFormBean.setEdit("yes");
+		
+		List<OptionItem> categoryList = (List<OptionItem>)request.getSession(true).getAttribute("categoryList");
+		
+		if(categoryList ==null || categoryList.isEmpty()){
+			List category = helper.getCategory();
+			categoryList = new ArrayList<OptionItem>();
+			if(category !=null && !category.isEmpty()){
+				Object[] str = null;
+				OptionItem item = null;
+				for (int i = 0; i < category.size(); i++) {
+					str = (Object[]) category.get(i);
+					item = new OptionItem(str[0].toString(), str[1].toString());
+					categoryList.add(item);
+				}
+			}
+			request.getSession(true).setAttribute("categoryList", categoryList);
+		
+		}	
+		
 
 		if(articleFormBean!=null)
 			return mapping.findForward("update");
 		else
 			return mapping.findForward("view_update_failure");
 
+	}
+	
+	public ActionForward list(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response)throws Exception
+	{
+
+		boolean outcome=false;
+		
+		//get resource list 
+		List<ArticleDTO> list=new ArrayList<ArticleDTO>();		
+		list= helper.listArticle();
+		request.setAttribute("articleList",list);
+
+		return mapping.findForward("list");
 	}
 	
 	public boolean isValid(String checkStr) {

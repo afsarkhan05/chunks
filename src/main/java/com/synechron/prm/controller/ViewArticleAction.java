@@ -26,8 +26,10 @@ public class ViewArticleAction extends Action {
 		
 		String articleId = request.getParameter("articleId");
 		String articleTitle = request.getParameter("articleTitle");
+		String categoryId = request.getParameter("categoryId");
 		
 		System.out.println("Article ID::: "+ articleId);
+		System.out.println("categoryId ID::: "+ categoryId);
 		System.out.println("Article Title::: "+ articleTitle);
 		
 		List articleList = null;
@@ -64,7 +66,6 @@ public class ViewArticleAction extends Action {
 
         request.setAttribute("articleResult", articleResult);
         
-		
         return mapping.findForward("success");
 
 	}

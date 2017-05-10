@@ -2,6 +2,7 @@ package com.synechron.prm.controller;
 
 import com.synechron.prm.dao.Dao;
 import com.synechron.prm.dao.GraphDTO;
+import com.synechron.prm.dao.ProjectDTO;
 import com.synechron.prm.util.Helper;
 
 import javax.servlet.ServletException;
@@ -9,14 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
 public class GraphServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	GraphDTO dto = new GraphDTO();
-	Dao dao = new Dao();
-	Helper helper = new Helper();
+	GraphDTO dto=new GraphDTO();
+	Dao dao=new Dao();
+	Helper helper=new Helper();
 
 	public GraphServlet() {
 		super();
@@ -25,7 +28,7 @@ public class GraphServlet extends HttpServlet {
 
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {/*
+			throws IOException, ServletException {
 
 
 		String id=request.getParameter("id");
@@ -148,7 +151,7 @@ public class GraphServlet extends HttpServlet {
 		//write response in JSON	
 		response.setContentType("application/json;charset=utf-8");
 
-		JSONObject json = new JSONObject();
+		/*JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONObject member =  new JSONObject();
 
@@ -169,9 +172,9 @@ public class GraphServlet extends HttpServlet {
 
 		
 
-		pw.close();
-	*/
-}
+		pw.close();*/
+	}
+
 
 
 }

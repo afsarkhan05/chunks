@@ -25,7 +25,7 @@ import com.synechron.prm.form.RegisterForm;
 import com.synechron.prm.form.UserForm;
 
 
-public class Helper
+public class Helper 
 {
 
 	Dao dao=new Dao();
@@ -39,11 +39,11 @@ public class Helper
 
 		return dao.checkLogin(registerForm);
 	}
-
+	
 	public boolean adminCheck(String userName){
-
+		
 		System.out.println("Util.Helper.loginCheck");
-
+		
 		return dao.checkAdmin(userName);
 	}
 
@@ -51,144 +51,144 @@ public class Helper
 
 		System.out.println("util.Helper.addArticle()");
 
-		return dao.addArticle(articleMaster);
+		return dao.addArticle(articleMaster);	
 
 	}*/
-
-
+	
+	
 	public boolean addArticleDoc(ArticleFormBean articleForm, String articleLocation){
 
 		System.out.println("util.Helper.addArticleDoc()");
 
-		return dao.addArticleDoc(articleForm, articleLocation);
+		return dao.addArticleDoc(articleForm, articleLocation);	
 
 	}
-
+	
 	public boolean updateArticleDoc(ArticleFormBean articleForm){
 
 		System.out.println("util.Helper.updateArticleDoc()");
 
-		return dao.updateArticleDoc(articleForm);
+		return dao.updateArticleDoc(articleForm);	
 
 	}
 
 	/* Cataegory Parts Start*/
-
+	
 	public List getArticle(ArticleFormBean articleForm){
 
 		System.out.println("Util.Helper.getArticle");
 
 		return dao.getArticle(articleForm);
 	}
+	
 
-
-
+	
 /*	public List getArticle(){
 
 		System.out.println("Util.Helper.getArticle");
 
 		return dao.getArticle();
 	}*/
-
+	
 	public boolean addArticle(ArticleFormBean articleFormBean){
 
 		System.out.println("util.Helper.addArticle()");
 
-		return dao.addArticle(articleFormBean);
+		return dao.addArticle(articleFormBean);	
 
 	}
 
 	public List<ArticleDTO> listArticle(){
-
+		
 		System.out.println("Util.Helper.listArticle");
-
+		
 		return dao.retreiveArticleList();
 	}
-
+	
 	public ArticleFormBean getArticleDetail(ArticleFormBean articleFormBean){
-
+		
 		System.out.println("util.Helper.getArticleDetail()");
-
+		
 		return dao.getArticleDetail(articleFormBean);
 	}
-
+	
 	public boolean deleteArticle(int articleId){
 
 		System.out.println("util.Helper.deleteArticle()");
 
-		return dao.deleteArticle(articleId);
+		return dao.deleteArticle(articleId);	
 
 	}
-
+	
 	public boolean updateArticle(ArticleFormBean articleFormBean){
 
 		System.out.println("util.Helper.updateArticle()");
 
-		return dao.updateArticle(articleFormBean);
+		return dao.updateArticle(articleFormBean);	
 
 	}
-
+	
 	/* Article parts Ends*/
-
-
-
+	
+	
+	
 	/* Cataegory Parts Start*/
-
+	
 	public List getCategory(){
 
 		System.out.println("Util.Helper.getCategory");
 
 		return dao.getCategory();
 	}
-
+	
 	public boolean addCategory(CategoryFormBean categoryFormBean){
 
 		System.out.println("util.Helper.addCategory()");
 
-		return dao.addCategory(categoryFormBean);
+		return dao.addCategory(categoryFormBean);	
 
 	}
 
 	public List<CategoryDTO> listCategory(){
-
+		
 		System.out.println("Util.Helper.listCategory");
-
+		
 		return dao.retreiveCategoryList();
 	}
-
+	
 	public CategoryFormBean getCategoryDetail(CategoryFormBean categoryFormBean){
-
+		
 		System.out.println("util.Helper.getCategoryDetail()");
-
+		
 		return dao.getCategoryDetail(categoryFormBean);
 	}
-
+	
 	public boolean deleteCategory(int categoryId){
 
 		System.out.println("util.Helper.deleteCategory()");
 
-		return dao.deleteCategory(categoryId);
+		return dao.deleteCategory(categoryId);	
 
 	}
-
+	
 	public boolean updateCategory(CategoryFormBean categoryFormBean){
 
 		System.out.println("util.Helper.updateCategory()");
 
-		return dao.updateCategory(categoryFormBean);
+		return dao.updateCategory(categoryFormBean);	
 
 	}
-
+	
 	/* Category parts Ends*/
-
-
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<DisplayMaster> getResultList(ArrayList returnList, HttpServletRequest request) {
-
-
+		
+		
 		List rowList = null;
-		DisplayMaster displayMaster = null;
-		List<DisplayMaster> list = new ArrayList();
+        DisplayMaster displayMaster = null;
+        List<DisplayMaster> list = new ArrayList();
 		if(returnList !=null && ! returnList.isEmpty()){
 			//System.out.println("return list "+ returnList.size());
 			for (Object object : returnList) {
@@ -203,7 +203,7 @@ public class Helper
 							request.setAttribute("description", CommonConstants.title + " "+ (String) rowList.get(0));
 						}
 					}
-
+					
 					displayMaster.setDescription(setDescription((String) rowList.get(3)));
 
 					displayMaster.setAnchor(setArticleAnchor((String) rowList.get(1), (String) rowList.get(2), request));
@@ -211,14 +211,14 @@ public class Helper
 				}
 			}
 		}
-
+		
 		return list;
-
-
+		
+		
 	}
-
+	
 	private String setDescription(String description) {
-
+		
 		if(isValid(description)){
 			if(description.length() > 200){
 				description = description.substring(0, 200);
@@ -227,123 +227,123 @@ public class Helper
 		}
 		return description;
 	}
-
+	
 	private String setArticleAnchor(String title, String articleId, HttpServletRequest req) {
 
 		if(! isValid(title)){
 			title = "Java Chunks";
 		}
+		
+		String scheme = req.getScheme();             
+        String serverName = req.getServerName(); 
+        int serverPort = req.getServerPort();
+        String contextPath = req.getContextPath();
+        String url = scheme + "://" +serverName + ":" 
+        		     + serverPort  
+        		     + contextPath + "/chunks/article/" 
+        		     + title.replaceAll(" ", "_")
+        		     + "/" + articleId;
 
-		String scheme = req.getScheme();
-		String serverName = req.getServerName();
-		int serverPort = req.getServerPort();
-		String contextPath = req.getContextPath();
-		String url = scheme + "://" +serverName + ":"
-				+ serverPort
-				+ contextPath + "/chunks/article/"
-				+ title.replaceAll(" ", "_")
-				+ "/" + articleId;
-
-
+		
 		return url;
 	}
-
-
+	
+	
 	private boolean isValid(String checkStr) {
 		boolean result = false;
-
+		
 		if(checkStr !=null && checkStr.trim().length() > 0){
 			result = true;
 		}
 		return result;
 	}
-
+	
 	public void getFeatureArticle(HttpServletRequest request, String limit){
-
-		String query = "select * from article_master am where am.isFeature='yes' and am.isActive='yes' limit "+limit;
-		String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
-		request.setAttribute("featuredArticle", getData(limit, query, items, request));
+		
+        String query = "select * from article_master am where am.isFeature='yes' and am.isActive='yes' limit "+limit;
+        String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
+        request.setAttribute("featuredArticle", getData(limit, query, items, request));
 	}
-
+	
 	public List<DisplayMaster> getData(String limit, String query, String[] items, HttpServletRequest request){
 		if(limit == null){
 			limit = " 10 ";
 		}
 		limit = String.valueOf(Integer.parseInt(limit) * 2);
 		PaginatorDAO dao = new PaginatorDAO();
-		List<DisplayMaster> list = new ArrayList<DisplayMaster>();
-		try{
-			ArrayList returnList = dao.fireQuery(query, false, items);
-			Collections.shuffle(returnList);
-			list = getResultList(returnList, request);
-		}catch(Exception e){
-
-		}
-
+        List<DisplayMaster> list = new ArrayList<DisplayMaster>();
+        try{
+	        ArrayList returnList = dao.fireQuery(query, false, items);
+	        Collections.shuffle(returnList);
+	        list = getResultList(returnList, request);
+        }catch(Exception e){
+        	
+        }
+		
 		return list;
 	}
-
+	
 	public void getLatestArticle(HttpServletRequest request, String limit){
-
+		
 		String query = "select * from article_master am where am.isFeature='no' and am.isActive='yes' order by createddate desc limit "+ limit;
-		String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
-		request.setAttribute("latestArticle", getData(limit, query, items, request));
+        String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
+        request.setAttribute("latestArticle", getData(limit, query, items, request));
 	}
-
+	
 	public void getRelatedArticle(HttpServletRequest request, String limit){
-
+		
 		String categoryId = request.getParameter("categoryId");
 		if(categoryId == null){ categoryId = "1"; }
-
-		String query = "select * from article_master am where am.isActive='yes' and am.categoryId ="+ categoryId +" limit  "+ limit;
-		String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
-		request.setAttribute("relatedArticle", getData(limit, query, items, request));
+		
+        String query = "select * from article_master am where am.isActive='yes' and am.categoryId ="+ categoryId +" limit  "+ limit;
+        String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};
+        request.setAttribute("relatedArticle", getData(limit, query, items, request));
 	}
-
-
-
+	
+	
+	
 	public List<UserDTO> listUsers(){
-
+		
 		System.out.println("Util.Helper.listUsers");
-
+		
 		return dao.retreiveUserList();
 	}
-
+	
 	public UserForm getuserDetail(UserForm userForm){
-
+		
 		System.out.println("util.Helper.getuserDetail()");
-
+		
 		return dao.getUserDetails(userForm);
 	}
-
+	
 	public boolean addUser(UserForm userForm){
 
 		System.out.println("util.Helper.addUser()");
 
-		return dao.addUser(userForm);
+		return dao.addUser(userForm);	
 
 	}
-
+	
 	public boolean updateUser(UserForm userForm){
 
 		System.out.println("util.Helper.updateUser()");
 
-		return dao.updateUser(userForm);
+		return dao.updateUser(userForm);	
 
 	}
-
+	
 	public boolean deleteUser(int userId){
 
 		System.out.println("util.Helper.updateUser()");
 
-		return dao.deleteUser(userId);
+		return dao.deleteUser(userId);	
 
 	}
+	
 
-
-
+	
 	/*
-	 * Resource Details & Manipulation
+	 * Resource Details & Manipulation 
 	 */
 
 	public List<ResourceDTO> listResource(){
@@ -366,7 +366,7 @@ public class Helper
 
 		System.out.println("util.Helper.addResource()");
 
-		return false; // dao.addResource(allocateForm);
+		return false; // dao.addResource(allocateForm);	
 
 	}
 
@@ -374,7 +374,7 @@ public class Helper
 
 		System.out.println("util.Helper.updateResource()");
 
-		return false; // dao.updateResource(allocateForm);
+		return false; // dao.updateResource(allocateForm);	
 
 	}
 
@@ -382,15 +382,15 @@ public class Helper
 
 		System.out.println("util.Helper.deleteResource()");
 
-		return dao.deleteResource(resourceId);
+		return dao.deleteResource(resourceId);	
 
 	}
 
-
+	
 	/*
 	 * Project Details & Manipulation
 	 */
-
+	
 	public List<ProjectDTO> listProject(){
 
 		System.out.println("In the Helper.listProject");
@@ -403,7 +403,7 @@ public class Helper
 
 		System.out.println("util.Helper.addProject()");
 
-		return false; // dao.addProject(projectForm);
+		return false; // dao.addProject(projectForm);	
 
 	}
 
@@ -426,7 +426,7 @@ public class Helper
 	{
 		System.out.println("util.Helper.deleteProject()");
 
-		return dao.deleteProject(projectId);
+		return dao.deleteProject(projectId);	
 
 	}
 
@@ -453,7 +453,7 @@ public class Helper
 
 	}
 
-
+	
 	//getting sorted array  for all as well as particular project for bar chart
 
 	public int[] getBugZillaArrayForAll(int length, String st){
@@ -492,7 +492,7 @@ public class Helper
 	}
 
 	public int[] getRedMindArray(int pid, String st){
-
+		
 		System.out.println("util.Helper.getRedMindArray()");
 
 		if(pid==0){
@@ -536,7 +536,7 @@ public class Helper
 		return graphDao.getRedMindArray(pid);
 	}
 
-
+	
 	/*
 	 * Employee Awards manipulation
 	 */
