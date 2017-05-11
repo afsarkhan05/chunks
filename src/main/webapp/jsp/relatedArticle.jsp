@@ -2,10 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 	<h3>Related Posts</h3>
 	<ul>
-	<c:forEach var="articleResult" items="${articleResultList}">
+	<c:forEach var="relatedArticle" items="${relatedArticle}">
 		<li>
-		<a class="wpp-post-title" title="${articleResult.title}" href="${articleResult.anchor}">
-			${articleResult.title}
+		<a class="wpp-post-title" title="${relatedArticle.title}" href="${relatedArticle.anchor}">
+			${relatedArticle.title}
 		</a>
 		<span class="post-stats"></span>
 		</li>

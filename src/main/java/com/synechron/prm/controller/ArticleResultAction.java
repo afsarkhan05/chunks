@@ -30,8 +30,16 @@ public class ArticleResultAction extends Action {
             page = Integer.parseInt(request.getParameter("page"));
         PaginatorDAO dao = new PaginatorDAO();
         
-        String query = "select SQL_CALC_FOUND_ROWS * from article_master limit "
-            + (page-1)*recordsPerPage + ", " + recordsPerPage;
+        String query = "select SQL_CALC_FOUND_ROWS * from article_master ";
+
+        if(categoryId !=null && ! categoryId.trim().equalsIgnoreCase("0")){
+            try{
+                query = query + "where categoryId = "+ Integer.parseInt(categoryId);
+            }catch(Exception e){
+
+            }
+        }
+        query = query + " limit "+(page-1)*recordsPerPage + ", " + recordsPerPage;
         
         ArrayList returnList=null;
         String[] items = {"articleName", "articleTitle","articleId", "articleDesc"};

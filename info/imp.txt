@@ -1,0 +1,2 @@
+category.do?method=list
+jc/addArticle.do?method=list

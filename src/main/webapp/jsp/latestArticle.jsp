@@ -2,13 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <h3>Latest Posts</h3>
 <ul>
-	<c:forEach var="articleResult" items="${articleResultList}">
+	<c:forEach var="latestArticle" items="${latestArticle}">
 		<li>
-		<a class="wpp-post-title" title="${articleResult.title}" href="${articleResult.anchor}">
-			${articleResult.title}
+		<a class="wpp-post-title" title="${latestArticle.title}" href="${latestArticle.anchor}">
+			${latestArticle.title}
 		</a>
 		<span class="post-stats"></span>
 		</li>
 	</c:forEach>
-
 </ul>

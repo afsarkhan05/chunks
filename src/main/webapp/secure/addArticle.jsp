@@ -53,7 +53,7 @@
 </head>
 <body class="body">
 	<html:html>
-	<html:form action="/addFoto"  enctype="multipart/form-data">
+	<html:form action="/addArticle"  enctype="multipart/form-data">
 		<center>
 			<h2>Add Article Details</h2>
 		</center>

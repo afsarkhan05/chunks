@@ -9,9 +9,9 @@
             <div class='left'>
                 <b>Java Web</b>
                 <div>
-                    <a href="#">JSP</a><br />
-                    <a href="#">Servlet</a><br />
-					<a href="#">Ajax</a><br />
+                    <a href="<%= request.getContextPath() %>/chunks/all/article/1">JSP</a><br />
+                    <a href="<%= request.getContextPath() %>/chunks/all/article/2">Servlet</a><br />
+					<a href="<%= request.getContextPath() %>/chunks/all/article/3">Ajax</a><br />
                     <a href="#">SEO menu</a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         </div>
     </li>
     <li class="separator"></li>
-    
+
 	<li><a href="#Horizontal-Menus" class="arrow">Java Novice</a>
         <div class="drop decor4_2" style="width: 300px;">
             <div class='left'>
@@ -72,4 +72,3 @@
 
 
 </ul>
-  
