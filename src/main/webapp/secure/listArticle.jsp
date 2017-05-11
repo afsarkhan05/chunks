@@ -1,3 +1,5 @@
+
+
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
@@ -6,22 +8,14 @@
 <head>
 <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"
 	media="screen" />
-
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/openTutorial.css"
+<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css"
+	media="screen" />
+<link href="css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"
 	media="screen" />
 
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/open.css"
-	media="screen" />
-
-
-<link href="<%=request.getContextPath()%>/css/jquery.dataTables.css" rel="stylesheet" type="text/css"
-	media="screen" />
-<link href="<%=request.getContextPath()%>/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"
-	media="screen" />
-
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -32,22 +26,15 @@
 <script type="text/javascript">
 	function editDeleteArticle(id, type, path) {
 		var frm = document.forms[0];
-		var pageName = path + "/chunks/secure/addArticle/" + type + "/" + id;
+		var pageName = path + "/addArticle.do?method=" + type + "&articleId="
+				+ id;
 		frm.action = pageName;
 		frm.submit();
 	}
 </script>
 </head>
 <body>
-
-
-<div id="container" class="container">
-
-
-	<%@ include file="../jsp/header/header.jsp" %>
-
-	<div id="content" style="width:100%;float:left;">
-
+	<html:html>
 	<html:form action="/resource">
 		<center>
 			<h2>User List</h2>
@@ -61,8 +48,7 @@
 						<th>Is Active</th>
 						<th>Is Feature</th>
 						<th>Category ID</th>
-						<th>Update</th>
-						<th>Delete</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -76,25 +62,17 @@
 							<td><bean:write name="list" property="isFeature" /></td>
 							<td><bean:write name="list" property="categoryId" /></td>
 							
-							
-							<logic:equal value="no" name="list" property="isFile" >
 							<td>
+							<logic:equal value="no" name="list" property="isFile" >
 								<input type="button"
 									onClick="editDeleteArticle('<bean:write name="list" property="articleId"/>', 
 														'updateView','<%=request.getContextPath()%>')"
-									value="update" />
-							</td>
-							<td>
-							<input type="button"
+									value="update" /> <input type="button"
 									onClick="editDeleteArticle('<bean:write name="list" property="articleId"/>', 
 													'delete','<%=request.getContextPath()%>')"
 									value="delete" />
-							</td>
-							</logic:equal>
-							<logic:equal value="yes" name="list" property="isFile" >
-								<td>&nbsp;</td><td>&nbsp;</td>
-							</logic:equal>
-
+							</logic:equal>&nbsp;
+								</td>
 
 						</tr>
 					</logic:iterate>
@@ -104,17 +82,6 @@
 
 		</center>
 	</html:form>
-	</div>
-							
-
-</div>
-
-
-	<div id="footer" style="clear:both;text-align:center;">
-		<%@ include file="../jsp/footer.jsp" %> 
-	</div>
-
-
-
+	</html:html>
 </body>
 </html>

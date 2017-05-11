@@ -14,11 +14,11 @@
 
 		<%@ include file="/secure/upload/upload.jsp" %>
 		
-		<html:form action="/chunks/secure/addArticle">
+		<html:form action="/addArticle">
 		<div id="errorDiv"  style="color: #0000ff;">
 		</div>
 
-		<div>
+
 		Article Name: 
 		<html:text property="articleName" name="articleBean" styleId="articleName"/>
 
@@ -26,53 +26,19 @@
 		<html:text property="articleTitle" name="articleBean" styleId="articleTitle"/>
 
 		Category ID: 
-		<html:select styleId="categoryId" property="categoryId" name="articleBean">
+		<html:select styleId="categoryId" property="categoryId">
 			<html:optionsCollection name="categoryList" value="id" label="label" />
 		</html:select>
-		</div>
-		
-		<logic:equal value="yes" property="edit" name="articleBean" >	
-		<div>
-			Status: 
-			<html:select styleId="status" property="status" name="articleBean">
-				<html:option value="Pending">Pending</html:option>
-				<html:option value="In Process">In Process</html:option>
-				<html:option value="Approved">Approved</html:option>
-				<html:option value="Rejected">Rejected</html:option>
-			</html:select>
-			
-			Feature:
-			<html:select styleId="isFeature" property="isFeature" name="articleBean">
-				<html:option value="yes">Yes</html:option>
-				<html:option value="no">No</html:option>
-			</html:select>
-			
-			Is Active:
-			<html:select styleId="isActive" property="isActive" name="articleBean">
-				<html:option value="yes">Yes</html:option>
-				<html:option value="no">No</html:option>
-			</html:select>
-			
-		</div>
-		</logic:equal>
+
+
 
 		<html:textarea property="articleDesc" styleId="content" name="articleBean"></html:textarea>
 
-		<html:hidden property="articleId" name="articleBean" styleId="articleId" />
+		<html:hidden property="articleDesc" name="articleBean" styleId="articleDesc" />
 
-		<logic:equal value="no" property="edit" name="articleBean" >	
-
-			<html:submit value="addArticle" property="method" styleId="method" onclick="return setArticleDesc();">
-			</html:submit>
+		<html:submit value="addArticle" property="method" styleId="method" onclick="return setArticleDesc();">
 		
-		</logic:equal>
-		
-		<logic:equal value="yes" property="edit" name="articleBean" >	
-
-			<html:submit value="update" property="method" styleId="method" onclick="return setArticleDesc();">
-			</html:submit>
-		
-		</logic:equal>
+		</html:submit>
 
 
 
@@ -121,7 +87,7 @@ function setArticleDesc(){
 	}
 	
 	
-	document.getElementById("content").value = mycontent;
+	document.getElementById("articleDesc").value = mycontent;
 	//document.getElementById("method").value = "addArticle";
 	
 	//var frm = document.forms[1];

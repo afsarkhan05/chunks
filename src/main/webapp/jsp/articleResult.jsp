@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="com.synechron.prm.util.Helper;" %>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE >
 <html>
 <head>
@@ -37,7 +37,7 @@
 	if(description ==null){
 		description = "My CHunks Description ";
 	}
-	Helper helper = new Helper();
+
 
 %>
 
@@ -55,9 +55,8 @@
 
 
 	<div id="menu" style="width:25%;float:left;">
-		<% helper.getFeatureArticle(request, "3"); %>
 		<div>
-			<%@ include file="featuredArticle.jsp" %>
+			<%@ include file="relatedArticle.jsp" %>
 		</div>
 	</div>
 
@@ -77,7 +76,6 @@
 </div>
 
 	<div id="menu" style="width:25%;float:right;">
-		<% helper.getLatestArticle(request, "3"); %>
 		<%@ include file="latestArticle.jsp" %>
 	</div>
 

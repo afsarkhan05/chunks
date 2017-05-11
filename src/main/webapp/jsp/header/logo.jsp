@@ -5,7 +5,6 @@
 <% 
 	//String userId = (String) session.getAttribute("userId");
 	String userName =(String) session.getAttribute("userName");
-	String admin =(String) session.getAttribute("admin");
 	if(userName == null){
 
 

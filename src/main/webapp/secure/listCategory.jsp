@@ -1,35 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"  import="com.synechron.prm.util.Helper;" %>
+
+
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-
-Helper helper = new Helper();
-
-%>
 
 <html>
 <head>
 <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"
 	media="screen" />
-
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/openTutorial.css"
+<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css"
+	media="screen" />
+<link href="css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"
 	media="screen" />
 
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/open.css"
-	media="screen" />
-
-
-<link href="<%=request.getContextPath()%>/css/jquery.dataTables.css" rel="stylesheet" type="text/css"
-	media="screen" />
-<link href="<%=request.getContextPath()%>/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css"
-	media="screen" />
-
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -40,33 +26,15 @@ Helper helper = new Helper();
 <script type="text/javascript">
 	function editDeleteCategory(id, type, path) {
 		var frm = document.forms[0];
-		//var pageName = path + "/category.do?method=" + type + "&categoryId=" 	+ id;
-		var pageName = path + "/chunks/secure/category/" + type + "/" + id;
+		var pageName = path + "/category.do?method=" + type + "&categoryId="
+				+ id;
 		frm.action = pageName;
 		frm.submit();
 	}
 </script>
 </head>
 <body>
-
-
-<div id="container" class="container">
-
-
-	<%@ include file="../jsp/header/header.jsp" %>
-
-
-	<div id="menu" style="width:25%;float:left;">
-		<% helper.getLatestArticle(request, "3"); %>
-		<div>
-			<%@ include file="../jsp/latestArticle.jsp" %>
-		</div>
-	</div>
-
-
-
-	<div id="content" style="width:45%;float:left;">
-
+	<html:html>
 	<html:form action="/resource">
 		<center>
 			<h2>User List</h2>
@@ -76,8 +44,6 @@ Helper helper = new Helper();
 						<th>Category Name</th>
 						<th>Category Description</th>
 						<th>Is Active</th>
-						<th>Update</th>
-						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,14 +56,10 @@ Helper helper = new Helper();
 							<td><input type="button"
 								onClick="editDeleteCategory('<bean:write name="list" property="categoryId"/>', 
 													'updateView','<%=request.getContextPath()%>')"
-								value="update" />
-							</td>
-							<td>
-								<input type="button"
+								value="update" /> <input type="button"
 								onClick="editDeleteCategory('<bean:write name="list" property="categoryId"/>', 
 												'delete','<%=request.getContextPath()%>')"
-								value="delete" />
-							</td>
+								value="delete" /></td>
 
 						</tr>
 					</logic:iterate>
@@ -107,21 +69,6 @@ Helper helper = new Helper();
 
 		</center>
 	</html:form>
-	</div>
-							
-
-</div>
-
-	<div id="menu" style="width:25%;float:right;">
-		<% helper.getFeatureArticle(request, "3"); %>
-		<%@ include file="../jsp/featuredArticle.jsp" %>
-	</div>
-
-	<div id="footer" style="clear:both;text-align:center;">
-		<%@ include file="../jsp/footer.jsp" %> 
-	</div>
-
-
-
+	</html:html>
 </body>
 </html>

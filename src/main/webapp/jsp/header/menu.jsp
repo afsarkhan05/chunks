@@ -21,8 +21,8 @@
                     <a href="#">Struts 1.x</a><br />
                     <a href="#">Struts 2.x</a><br />
                     <a href="#">Spring</a><br />
-		      <a href="#">JSF</a><br />
-		      <a href="#">Hibernate</a>
+					<a href="#">JSF</a><br />
+					<a href="#">Hibernate</a>
                 </div>
             </div>
             <div style='clear: both;'></div>
@@ -68,39 +68,7 @@
     <li class="separator"></li>
     <li><a href="#Horizontal-Menu-CSS">Interview Questions</a></li>
 
-<% 
-	if(userName != null){
-%>
-	<li><a href="<%= request.getContextPath() %>/chunks/secure/">Post Tutorials</a></li>
-<%} if(admin !=null && admin.equalsIgnoreCase("yes")){ %>
-
-
-	<li><a href="#Horizontal-Menus" class="arrow">Manage Article/Category</a>
-        <div class="drop decor4_2" style="width: 320px;">
-            <div class='left'>
-			 <b>Manage Article</b>
-                <div>
-
-                     <a href="<%= request.getContextPath() %>/chunks/secure/addArticle/list/1" >List Article</a><br/>
-                    <a href="<%= request.getContextPath() %>/chunks/secure/uploadArticle.do">Add Article</a>	              
-                </div>
-            </div>
-			<div class='left'>
-				<b>Manage Category</b>
-						<div>
-							<a href="<%= request.getContextPath() %>/chunks/secure/category/list/1" >List Category</a><br/>
-							<a href="<%= request.getContextPath() %>/secure/addCategory.jsp">Add Category</a>							
-						</div>
-            </div>
-            <div style='clear: both;'></div>
-        </div>
-    </li>
-
-	
-<% }%>
-
-
-    
+	<li><a href="#Horizontal-Menu-CSS">Post Tutorials</a></li>
 
 
 </ul>

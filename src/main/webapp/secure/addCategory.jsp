@@ -1,24 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"  import="com.synechron.prm.util.Helper;" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-
-Helper helper = new Helper();
-
-%>
 
 <html>
 <head>
-<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"
-	media="screen" />
-
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/openTutorial.css"
-	media="screen" />
-
-<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/open/open.css"
+<link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css"
 	media="screen" />
 
 
@@ -32,26 +18,8 @@ Helper helper = new Helper();
 
 </head>
 <body class="body">
-
-
-<div id="container" class="container">
-
-
-	<%@ include file="../jsp/header/header.jsp" %>
-
-
-	<div id="menu" style="width:25%;float:left;">
-		<% helper.getLatestArticle(request, "3"); %>
-		<div>
-			<%@ include file="../jsp/latestArticle.jsp" %>
-		</div>
-	</div>
-
-
-
-	<div id="content" style="width:45%;float:left;">
-
-	<html:form action="/chunks/secure/category">
+	<html:html>
+	<html:form action="/category">
 		<center>
 			<h2><logic:equal value="yes" property="edit" name="categoryFormBean" >Modify Category Detail</logic:equal>
 			    <logic:equal value="no" property="edit" name="categoryFormBean" >Add Category</logic:equal>
@@ -93,23 +61,6 @@ Helper helper = new Helper();
 		</center>
 		<html:hidden property="categoryId" name="categoryFormBean"/>
 	</html:form>
-
-	</div>
-							
-
-</div>
-
-	<div id="menu" style="width:25%;float:right;">
-		<% helper.getFeatureArticle(request, "3"); %>
-		<%@ include file="../jsp/featuredArticle.jsp" %>
-	</div>
-
-	<div id="footer" style="clear:both;text-align:center;">
-		<%@ include file="../jsp/footer.jsp" %> 
-	</div>
-
-
-
+	</html:html>
 </body>
 </html>
-

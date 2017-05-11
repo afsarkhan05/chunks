@@ -61,7 +61,7 @@
 	</html:form>		
 	</html:html>
 	<html:html>
-	<html:form action="/chunks/secure/addArticle">
+	<html:form action="/addArticle">
 		<center>
 			<h2>Add Article Details</h2>
 			<table class="table">

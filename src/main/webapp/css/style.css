@@ -193,4 +193,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 
 }
 .header a{ color:#fff;}
-.container { height:100%}
+.container { }
+.textColor{ color:#fff;}

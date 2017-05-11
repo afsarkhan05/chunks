@@ -53,7 +53,7 @@
 </head>
 <body class="body">
 	<html:html>
-	<html:form action="/chunks/secure/addArticleDoc"   enctype="multipart/form-data">
+	<html:form action="/addArticleDoc"   enctype="multipart/form-data">
 		<center>
 			<h2>Upload Article .doc File</h2>
 			<table class="table">
