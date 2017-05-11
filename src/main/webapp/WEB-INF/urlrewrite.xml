@@ -10,103 +10,171 @@
 -->
 <urlrewrite>
 
-    <rule>
-        <note>
-            The rule means that requests to /test/status/ will be redirected to /rewrite-status
-            the url will be rewritten.
-        </note>
-        <from>/chunks/test/status/</from>
-        <to type="redirect">%{context-path}/chunks/rewrite-status</to>
-    </rule>
-
-
-    <outbound-rule>
-        <note>
-
-        </note>
-        <from>/chunks/rewrite-status</from>
-        <to>/chunks/test/status/</to>
-    </outbound-rule>
-    
-    
-    <rule>
-    <name>Trailing Slash Problem</name>
+	<rule>
 	    <note>
-	        Every webmaster can sing a song about the problem of the trailing slash on URLs referencing directories.
-	        If they are missing, the server dumps an error, because if you say /~quux/foo instead of /~quux/foo/ then
-	        the server searches for a file named foo. And because this file is a directory it complains. Actually it
-	        tries to fix it itself in most of the cases, but sometimes this mechanism need to be emulated by you. For
-	        instance after you have done a lot of complicated URL rewritings to CGI scripts etc.
-	
-	        The solution to this subtle problem is to let the server add the trailing slash automatically. To do this
-	        correctly we have to use an external redirect, so the browser correctly requests subsequent images etc. If
-	        we only did a internal rewrite, this would only work for the directory page, but would go wrong when any
-	        images are included into this page with relative URLs, because the browser would request an in-lined object.
-	        For instance, a request for image.gif in /~quux/foo/index.html would become /~quux/image.gif without the
-	        external redirect!
+	        The rule means that requests to /test/status/ will be redirected to /rewrite-status
+	        the url will be rewritten.
 	    </note>
-	    <from>^/chunks/article/([a-z_-]+)/([0-9]+)/$</from>
+	    <from>^/test/status/</from>
+	    <to type="redirect">%{context-path}/chunks/rewrite-status</to>
+	</rule>
+	
+	
+	<outbound-rule>
+	    <note>
+	
+	    </note>
+	    <from>^/chunks/rewrite-status</from>
+	    <to>/chunks/test/status/</to>
+	</outbound-rule>
+	
+	
+	<rule>
+	<name>Trailing Slash Problem</name>
+	 <note>
+	     Every webmaster can sing a song about the problem of the trailing slash on URLs referencing directories.
+	     If they are missing, the server dumps an error, because if you say /~quux/foo instead of /~quux/foo/ then
+	     the server searches for a file named foo. And because this file is a directory it complains. Actually it
+	     tries to fix it itself in most of the cases, but sometimes this mechanism need to be emulated by you. For
+	     instance after you have done a lot of complicated URL rewritings to CGI scripts etc.
+	
+	     The solution to this subtle problem is to let the server add the trailing slash automatically. To do this
+	     correctly we have to use an external redirect, so the browser correctly requests subsequent images etc. If
+	     we only did a internal rewrite, this would only work for the directory page, but would go wrong when any
+	     images are included into this page with relative URLs, because the browser would request an in-lined object.
+	     For instance, a request for image.gif in /~quux/foo/index.html would become /~quux/image.gif without the
+	     external redirect!
+	 </note>
+	 <from>^/chunks/article/([a-z_-]+)/([0-9]+)/$</from>
+	 <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
+	</rule>
+	
+	
+	
+	
+	<rule>
+	    <from>^/chunks/article/([a-z_-]+)/([0-9]+)$</from>
 	    <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
-    </rule>
-    
-    
-    
-    
-    <rule>
-        <from>^/chunks/article/([a-z_-]+)/([0-9]+)$</from>
-        <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
-    </rule>
-    
-    <outbound-rule>
-        <note>
+	</rule>
+	
+	<outbound-rule>
+	    <note>
+	
+	    </note>
+	    <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
+	   <to>/world/$1/$2</to-->
+	
+	    <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
+	    <to>/chunks/article/$1/$2</to>
+	</outbound-rule>
+	
+	<rule>
+	    <from>^/chunks/questions/([a-z]+)/([0-9]+)$</from>
+	    <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
+	</rule>
+	
+	<outbound-rule>
+	    <note>
+	        The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
+	        the url /rewrite-status will be rewritten to /test/status/.
+	
+	        The above rule and this outbound-rule means that end users should never see the
+	        url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
+	        in your pages.
+	    </note>
+	    <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
+	   <to>/world/$1/$2</to-->
+	
+	      <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
+	      <to>/chunks/questions/$1/$2</to>
+	  </outbound-rule>
+	
+	
+	  <rule>
+	      <from>^/chunks/all/article$</from>
+	      <to>/articleResult.do</to>
+	  </rule>
+	
+	  <rule>
+	      <from>^/chunks/all/article/$</from>
+	      <to>/articleResult.do</to>
+	  </rule>
+	  
+	  <outbound-rule>
+	      <note></note>
+	      <from>/articleResult.do</from>
+	      <to>/chunks/all/article/</to>
+	  </outbound-rule>
+	  
+	  
+	  <rule>
+	      <from>^/chunks/all/article/([0-9]+)/$</from>
+	      <to>/articleResult.do?categoryId=$1</to>
+	  </rule>
+	
+	  <rule>
+	      <from>^/chunks/all/article/([0-9]+)$</from>
+	      <to>/articleResult.do?categoryId=$1</to>
+	  </rule>
+	  
+	  <outbound-rule>
+	      <note></note>
+	      <from>/articleResult.do?categoryId=([0-9]+)</from>
+	      <to>/chunks/all/article/$1</to>
+	  </outbound-rule>
+	  
+	  
+	  
+	  <rule>
+	      <from>^/chunks/all/article/([0-9]+)/([0-9]+)/$</from>
+	      <to>/articleResult.do?categoryId=$1&amp;page=$2</to>
+	  </rule>
+	
+	  <rule>
+	      <from>^/chunks/all/article/([0-9]+)/([0-9]+)$</from>
+	      <to>/articleResult.do?categoryId=$1&amp;page=$2</to>
+	  </rule>
+	  
+	  
+	  
+	  
+	  
+	<rule>
+	   <name>Trailing Slash Problem</name>
+	   <note></note>
+	   <from>^/chunks/article/([a-z_-]+)/([0-9]+)/([0-9]+)/$</from>
+	   <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2&amp;categoryId=$3</to>
+	</rule>
+	  
+	<rule>
+	   <note></note>
+	   <from>^/chunks/article/([a-z_-]+)/([0-9]+)/([0-9]+)$</from>
+	   <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2&amp;categoryId=$3</to>
+	</rule>
+	  
+	<outbound-rule>
+	       <note></note>
+	       <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([0-9]+)&amp;categoryId=([0-9]+)$</from>
+	       <to>/chunks/article/$1/$2/$3</to>
+	</outbound-rule>
 
-        </note>
-        <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
-        <to>/world/$1/$2</to-->
-
-        <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
-        <to>/chunks/article/$1/$2</to>
-    </outbound-rule>
-    
-    <rule>
-        <from>^/chunks/questions/([a-z]+)/([0-9]+)$</from>
-        <to>/viewArticle.do?articleTitle=$1&amp;articleId=$2</to>
-    </rule>
-    
-    <outbound-rule>
-        <note>
-            The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)
-            the url /rewrite-status will be rewritten to /test/status/.
-
-            The above rule and this outbound-rule means that end users should never see the
-            url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks
-            in your pages.
-        </note>
-        <!-- from>^/world\.jsp\?country=([a-z]+)&city=([a-z]+)$</from>
-        <to>/world/$1/$2</to-->
-
-        <from>/viewArticle\.do\?articleTitle=([a-z]+)&amp;articleId=([a-z]+)$</from>
-        <to>/chunks/questions/$1/$2</to>
-    </outbound-rule>
-
-
-    <rule>
-        <from>^/chunks/all/article$</from>
-        <to>/articleResult.do</to>
-    </rule>
-
-    <rule>
-        <from>^/chunks/all/article/$</from>
-        <to>/articleResult.do</to>
-    </rule>
-    
-    <outbound-rule>
-        <note></note>
-        <from>/articleResult.do</from>
-        <to>/chunks/all/article/</to>
-    </outbound-rule>
-
-
+	  <rule>
+	      <from>^/chunks/disclaimer/$</from>
+	      <to>/jsp/disclaimer.jsp</to>
+	  </rule>
+	
+	  <rule>
+	      <from>^/chunks/disclaimer$</from>
+	      <to>/jsp/disclaimer.jsp</to>
+	  </rule>
+	  
+	  <outbound-rule>
+	       <note></note>
+	       <from>/jsp/disclaimer.jsp</from>
+	       <to>/chunks/disclaimer</to>
+	  </outbound-rule>
+	  
+	  
 
     <!--
 

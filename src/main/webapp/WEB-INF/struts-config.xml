@@ -11,6 +11,7 @@
 		
 		<form-bean name="User" type="com.synechron.prm.form.UserForm" />
 		<form-bean name="articleBean" type="com.synechron.prm.form.ArticleFormBean" />
+		<form-bean name="categoryFormBean" type="com.synechron.prm.form.CategoryFormBean" />
 		
 		
 		<form-bean name="GraphResult" type="com.synechron.prm.form.GraphResultForm" />
@@ -44,18 +45,12 @@
 			<forward name="success" path="/jsp/home.jsp" />
 		</action>
 
-
-		<action name="LoginForm" path="/login" validate="true"
-			type="com.synechron.prm.controller.RegisterAction" scope="request">
-			<forward name="success" path="/secure/UserHome.jsp" />
-			<forward name="failure" path="/jsp/home.jsp" />
-		</action>
 		
 		<action name="User" path="/registerUser" parameter="method"
 			type="com.synechron.prm.controller.RegisterUserAction">
-			<forward name="input" path="/secure/registerUser.jsp" />
+			<forward name="input" path="/jsp/registerUser.jsp" />
 			<forward name="view_success" path="/secure/listuser.jsp" />
-			<forward name="view_failure" path="/secure/registerUser.jsp" />
+			<forward name="view_failure" path="/jsp/registerUser.jsp" />
 			<forward name="add_success" path="/secure/captcha/captchasubmit.jsp" />
 			<forward name="add_failure" path="/secure/addresource.jsp" />
 			<forward name="update_success" path="/secure/listuser.jsp" />
@@ -66,29 +61,9 @@
 			<forward name="view_update_failure" path="/secure/listuser.jsp" />
 		</action>
 		
-		<action name="articleBean" path="/addArticleDoc" parameter="method"
-			type="com.synechron.prm.controller.AddArticleAction" scope="request">
-			<forward name="success" path="/secure/registerUser.jsp" />
-			<forward name="fail" path="addArticleDoc.do" />
-			<forward name="getDetailSuccess" path="/secure/awardlist.jsp" />
-			<forward name="getDetailFailure" path="/secure/awardlist.jsp" />
-			<forward name="viewPerticularSuccess" path="/secure/awardresult.jsp" />
-			<forward name="viewMonthSuccess" path="/secure/awardformonth.jsp" />
-			<forward name="viewUpdateSuccess" path="/secure/updateaward.jsp" />
-			<forward name="update_success" path="/secure/awardlist.jsp" />
-			<forward name="update_failure" path="/secure/awardform.jsp" />
-			<forward name="delete_success" path="/secure/awardlist.jsp" />
-			<forward name="delete_failure" path="/secure/awardform.jsp" />
-		</action>
-		
-		<action name="articleBean" path="/articleResult" 
-			type="com.synechron.prm.controller.ArticleResultAction" scope="request">
-			<forward name="success" path="/jsp/articleResult.jsp" />
-		</action>
-		
 		<action name="User" path="/editUser" validate="true"
 			type="com.synechron.prm.controller.EditUserAction" scope="request">
-			<forward name="editUser" path="/secure/registerUser.jsp" />
+			<forward name="editUser" path="/jsp/registerUser.jsp" />
 			<forward name="failure" path="/jsp/home.jsp" />
 		</action>
 		
@@ -98,19 +73,50 @@
 		</action>
 		
 		
+		
+		<action name="articleBean" path="/secure/uploadArticle" parameter="method"
+			type="com.synechron.prm.controller.UploadArticleAction" scope="request">
+			<forward name="success" path="/secure/testArticle.jsp" />
+		</action>
+		
+		<action name="articleBean" path="/addArticle" parameter="method"
+			type="com.synechron.prm.controller.AddArticleAction" scope="request">
+			<forward name="fail" path="addArticleDoc.do" />
+			<forward name="input" path="/uploadArticle" />
+			<forward name="add_success" path="/secure/listArticle.jsp" />
+			<forward name="update" path="/secure/testArticle.jsp" />
+			<forward name="list" path="/secure/listArticle.jsp" />
+			<forward name="view_update_failure" path="/secure/listArticle.jsp" />
+			<forward name="all" path="/chunks/all/article" />
+		</action>
+		
+		<action name="articleBean" path="/articleResult" 
+			type="com.synechron.prm.controller.ArticleResultAction" scope="request">
+			<forward name="success" path="/jsp/articleResult.jsp" />
+		</action>
+		
+
+		
+		
 		<action name="articleBean" path="/viewArticle" parameter="method"
 			type="com.synechron.prm.controller.ViewArticleAction" scope="request">
 			<forward name="success" path="/jsp/viewArticle.jsp" />
 		</action>
 		
-		
-		<action name="articleBean" path="/uploadArticle" parameter="method"
-			type="com.synechron.prm.controller.ViewArticleAction" scope="request">
-			<forward name="success" path="/jsp/viewArticle.jsp" />
+				
+		<action name="categoryFormBean" path="/category" parameter="method"
+			type="com.synechron.prm.controller.CategoryAction">
+			<forward name="input" path="/secure/addCategory.jsp" />
+			<forward name="add_success" path="/secure/listCategory.jsp" />
+			<forward name="update" path="/secure/addCategory.jsp" />
+			<forward name="list" path="/secure/listCategory.jsp" />
+			<forward name="view_update_failure" path="/secure/listuser.jsp" />
+			
 		</action>
 		
 		
 
+		
 		<action name="GraphResult" path="/graph" parameter="method"
 			type="com.synechron.prm.controller.GraphResultAction" scope="session">
 			<forward name="success" path="/secure/GraphResults.jsp" />
