@@ -22,7 +22,7 @@
         <description></description>
         <display-name>GraphServlet</display-name>
         <servlet-name>GraphServlet</servlet-name>
-        <servlet-class>com.synechron.prm.controller.GraphServlet</servlet-class>
+        <servlet-class>com.bigdata.chunks.controller.GraphServlet</servlet-class>
       </servlet>
       <servlet-mapping>
         <servlet-name>GraphServlet</servlet-name>
@@ -32,7 +32,7 @@
         <description></description>
         <display-name>MaturityServlet</display-name>
         <servlet-name>MaturityServlet</servlet-name>
-        <servlet-class>com.synechron.prm.controller.MaturityServlet</servlet-class>
+        <servlet-class>com.bigdata.chunks.controller.MaturityServlet</servlet-class>
       </servlet>
       <servlet-mapping>
         <servlet-name>MaturityServlet</servlet-name>
@@ -42,7 +42,7 @@
         <description></description>
         <display-name>AwardServlet</display-name>
         <servlet-name>AwardServlet</servlet-name>
-        <servlet-class>com.synechron.prm.controller.AwardServlet</servlet-class>
+        <servlet-class>com.bigdata.chunks.controller.AwardServlet</servlet-class>
       </servlet>
       <servlet-mapping>
         <servlet-name>AwardServlet</servlet-name>
@@ -52,7 +52,7 @@
         <description></description>
         <display-name>ImageServlet</display-name>
         <servlet-name>ImageServlet</servlet-name>
-        <servlet-class>com.synechron.prm.controller.ImageServlet</servlet-class>
+        <servlet-class>com.bigdata.chunks.controller.ImageServlet</servlet-class>
       </servlet>
       <servlet-mapping>
         <servlet-name>ImageServlet</servlet-name>
@@ -99,7 +99,7 @@
   
   	<servlet>
 	   <servlet-name>UploadServlet</servlet-name>
-	   <servlet-class>com.synechron.prm.upload.UploadServlet</servlet-class>
+	   <servlet-class>com.bigdata.chunks.upload.UploadServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>UploadServlet</servlet-name>
@@ -108,7 +108,7 @@
 	
     <filter>
   <filter-name>adminAccessFilter</filter-name>
-  <filter-class>com.synechron.prm.controller.AuthorizedAccessFilter</filter-class>
+  <filter-class>com.bigdata.chunks.controller.AuthorizedAccessFilter</filter-class>
   
   <init-param>
     <param-name>roles</param-name>

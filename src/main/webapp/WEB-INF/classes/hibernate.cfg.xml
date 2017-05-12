@@ -11,10 +11,10 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="show_sql">false</property>
 		<!--Mapping hbm -->
-		<mapping resource="com/synechron/prm/bean/AuthMaster.hbm.xml" />
-		<mapping resource="com/synechron/prm/bean/RecoverMaster.hbm.xml" />
-		<mapping resource="com/synechron/prm/bean/CategoryMaster.hbm.xml" />
-		<mapping resource="com/synechron/prm/bean/ArticleMaster.hbm.xml" />
+		<mapping resource="com/bigdata/chunks/bean/AuthMaster.hbm.xml" />
+		<mapping resource="com/bigdata/chunks/bean/RecoverMaster.hbm.xml" />
+		<mapping resource="com/bigdata/chunks/bean/CategoryMaster.hbm.xml" />
+		<mapping resource="com/bigdata/chunks/bean/ArticleMaster.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

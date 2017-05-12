@@ -4,7 +4,7 @@
   
 <%@ page import="java.lang.*" import="java.util.Scanner"  
     import="java.io.FileReader" import="java.net.*"%>  
-<%@page import="com.synechron.prm.util.DisplayArticle"%>  
+<%@page import="com.bigdata.chunks.util.DisplayArticle"%>
   
 <%  
 String articleId = request.getParameter("articleId");

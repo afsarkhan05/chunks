@@ -7,22 +7,22 @@
 <struts-config>
 	<data-sources />
 	<form-beans>
-		<form-bean name="LoginForm" type="com.synechron.prm.form.RegisterForm" />
+		<form-bean name="LoginForm" type="com.bigdata.chunks.form.RegisterForm" />
 		
-		<form-bean name="User" type="com.synechron.prm.form.UserForm" />
-		<form-bean name="articleBean" type="com.synechron.prm.form.ArticleFormBean" />
-		<form-bean name="categoryFormBean" type="com.synechron.prm.form.CategoryFormBean" />
+		<form-bean name="User" type="com.bigdata.chunks.form.UserForm" />
+		<form-bean name="articleBean" type="com.bigdata.chunks.form.ArticleFormBean" />
+		<form-bean name="categoryFormBean" type="com.bigdata.chunks.form.CategoryFormBean" />
 		
 		
-		<form-bean name="GraphResult" type="com.synechron.prm.form.GraphResultForm" />
+		<form-bean name="GraphResult" type="com.bigdata.chunks.form.GraphResultForm" />
 
-		<form-bean name="Awards" type="com.synechron.prm.form.AwardForm" />
+		<form-bean name="Awards" type="com.bigdata.chunks.form.AwardForm" />
 
-		<form-bean name="Resource" type="com.synechron.prm.form.AllocateForm" />
-		<form-bean name="ViewResource" type="com.synechron.prm.form.AllocateForm" />
+		<form-bean name="Resource" type="com.bigdata.chunks.form.AllocateForm" />
+		<form-bean name="ViewResource" type="com.bigdata.chunks.form.AllocateForm" />
 
-		<form-bean name="Project" type="com.synechron.prm.form.ProjectForm" />
-		<form-bean name="ViewProject" type="com.synechron.prm.form.ProjectForm" />
+		<form-bean name="Project" type="com.bigdata.chunks.form.ProjectForm" />
+		<form-bean name="ViewProject" type="com.bigdata.chunks.form.ProjectForm" />
 	</form-beans>
 
 	<global-exceptions />
@@ -33,7 +33,7 @@
 
 	<action-mappings>
 		<action name="LoginForm" path="/login" validate="true"
-			type="com.synechron.prm.controller.RegisterAction" scope="request">
+			type="com.bigdata.chunks.controller.RegisterAction" scope="request">
 			<forward name="success" path="/secure/UserHome.jsp" />
 			<forward name="failure" path="/jsp/home.jsp" />
 		</action>
@@ -41,13 +41,13 @@
 		
 
 		<action name="Logout" path="/logout"
-			type="com.synechron.prm.controller.LogOutAction" scope="session">
+			type="com.bigdata.chunks.controller.LogOutAction" scope="session">
 			<forward name="success" path="/jsp/home.jsp" />
 		</action>
 
 		
 		<action name="User" path="/registerUser" parameter="method"
-			type="com.synechron.prm.controller.RegisterUserAction">
+			type="com.bigdata.chunks.controller.RegisterUserAction">
 			<forward name="input" path="/jsp/registerUser.jsp" />
 			<forward name="view_success" path="/secure/listuser.jsp" />
 			<forward name="view_failure" path="/jsp/registerUser.jsp" />
@@ -62,25 +62,25 @@
 		</action>
 		
 		<action name="User" path="/editUser" validate="true"
-			type="com.synechron.prm.controller.EditUserAction" scope="request">
+			type="com.bigdata.chunks.controller.EditUserAction" scope="request">
 			<forward name="editUser" path="/jsp/registerUser.jsp" />
 			<forward name="failure" path="/jsp/home.jsp" />
 		</action>
 		
 		<action name="User" path="/userList"
-			type="com.synechron.prm.controller.UserListAction" scope="request">
+			type="com.bigdata.chunks.controller.UserListAction" scope="request">
 			<forward name="success" path="/secure/userlist.jsp" />
 		</action>
 		
 		
 		
 		<action name="articleBean" path="/secure/uploadArticle" parameter="method"
-			type="com.synechron.prm.controller.UploadArticleAction" scope="request">
+			type="com.bigdata.chunks.controller.UploadArticleAction" scope="request">
 			<forward name="success" path="/secure/testArticle.jsp" />
 		</action>
 		
 		<action name="articleBean" path="/addArticle" parameter="method"
-			type="com.synechron.prm.controller.AddArticleAction" scope="request">
+			type="com.bigdata.chunks.controller.AddArticleAction" scope="request">
 			<forward name="fail" path="addArticleDoc.do" />
 			<forward name="input" path="/uploadArticle" />
 			<forward name="add_success" path="/secure/listArticle.jsp" />
@@ -91,7 +91,7 @@
 		</action>
 		
 		<action name="articleBean" path="/articleResult" 
-			type="com.synechron.prm.controller.ArticleResultAction" scope="request">
+			type="com.bigdata.chunks.controller.ArticleResultAction" scope="request">
 			<forward name="success" path="/jsp/articleResult.jsp" />
 		</action>
 		
@@ -99,13 +99,13 @@
 		
 		
 		<action name="articleBean" path="/viewArticle" parameter="method"
-			type="com.synechron.prm.controller.ViewArticleAction" scope="request">
+			type="com.bigdata.chunks.controller.ViewArticleAction" scope="request">
 			<forward name="success" path="/jsp/viewArticle.jsp" />
 		</action>
 		
 				
 		<action name="categoryFormBean" path="/category" parameter="method"
-			type="com.synechron.prm.controller.CategoryAction">
+			type="com.bigdata.chunks.controller.CategoryAction">
 			<forward name="input" path="/secure/addCategory.jsp" />
 			<forward name="add_success" path="/secure/listCategory.jsp" />
 			<forward name="update" path="/secure/addCategory.jsp" />
@@ -118,7 +118,7 @@
 
 		
 		<action name="GraphResult" path="/graph" parameter="method"
-			type="com.synechron.prm.controller.GraphResultAction" scope="session">
+			type="com.bigdata.chunks.controller.GraphResultAction" scope="session">
 			<forward name="success" path="/secure/GraphResults.jsp" />
 			<forward name="failure" path="/secure/UserHome.jsp" />
 			<forward name="successMaturity" path="/secure/maturity.jsp" />
@@ -128,7 +128,7 @@
 		</action>
 
 		<action name="Awards" path="/award" parameter="method"
-			type="com.synechron.prm.controller.AwardAction" scope="session">
+			type="com.bigdata.chunks.controller.AwardAction" scope="session">
 			<forward name="success" path="/secure/awardlist.jsp" />
 			<forward name="failure" path="/secure/awardform.jsp" />
 			<forward name="getDetailSuccess" path="/secure/awardlist.jsp" />
@@ -143,7 +143,7 @@
 		</action>
 
 		<action name="Resource" path="/resource" parameter="method"
-			type="com.synechron.prm.controller.AllocateAction">
+			type="com.bigdata.chunks.controller.AllocateAction">
 			<forward name="success" path="/secure/list.jsp" />
 			<forward name="failure" path="/secure/addresource.jsp" />
 			<forward name="update_success" path="/secure/list.jsp" />
@@ -156,13 +156,13 @@
 		</action>
 
 		<action name="ViewResource" path="/viewResource"
-			type="com.synechron.prm.controller.ViewResource" scope="request">
+			type="com.bigdata.chunks.controller.ViewResource" scope="request">
 			<forward name="success" path="/secure/list.jsp" />
 			<forward name="failure" path="/secure/list.jsp" />
 		</action>
 
 		<action name="Project" path="/project" parameter="method"
-			type="com.synechron.prm.controller.ProjectAction" scope="session">
+			type="com.bigdata.chunks.controller.ProjectAction" scope="session">
 			<forward name="success" path="/secure/projectlist.jsp" />
 			<forward name="failure" path="/secure/project.jsp" />
 			<forward name="update_success" path="/secure/projectlist.jsp" />
@@ -173,7 +173,7 @@
 		</action>
 
 		<action name="ViewProject" path="/viewProject"
-			type="com.synechron.prm.controller.ViewProject" scope="request">
+			type="com.bigdata.chunks.controller.ViewProject" scope="request">
 			<forward name="success" path="/secure/projectlist.jsp" />
 			<forward name="failure" path="/secure/projectlist.jsp" />
 		</action>

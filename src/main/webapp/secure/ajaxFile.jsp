@@ -1,4 +1,4 @@
- <%@page import="java.io.*,java.sql.*,com.synechron.prm.util.*;" %>
+ <%@page import="java.io.*,java.sql.*,com.bigdata.chunks.util.*;" %>
 
 <%! OutputStream fout = null;
     InputStream filecontent = null;
