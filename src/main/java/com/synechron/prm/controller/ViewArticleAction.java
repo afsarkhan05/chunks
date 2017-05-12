@@ -44,7 +44,7 @@ public class ViewArticleAction extends Action {
 				request.setAttribute("description", CommonConstants.title  + " "+  articleArr[1]);
 				ActionForward af = new ActionForward();
 				af.setName("pageForward");
-				af.setPath(articleArr[2].toString()+"?fdArticleTitle="+articleArr[1]+"&fdArticleId="+articleId);
+				af.setPath(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+ "/"+articleArr[2].toString()+"?categoryId="+articleArr[3]+"&articleId="+articleId);
 				af.setRedirect(true);
 				return af;
 			}else {

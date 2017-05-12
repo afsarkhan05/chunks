@@ -173,8 +173,11 @@
 	       <from>/jsp/disclaimer.jsp</from>
 	       <to>/chunks/disclaimer</to>
 	  </outbound-rule>
-	  
-	  
+
+	<outbound-rule>
+		<from>^/jsp/dynamic/([a-z]+)$</from>
+		<to>/chunks/dy/$1</to>
+	</outbound-rule>
 
     <!--
 

@@ -2242,7 +2242,7 @@ public class Dao
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean outcome=false;
 		
-		String sql="select am.articleDesc, am.articleTitle, am.articleLocation from ArticleMaster am where articleId="+articleForm.getArticleId();
+		String sql="select am.articleDesc, am.articleTitle, am.articleLocation, am.categoryId from ArticleMaster am where articleId="+articleForm.getArticleId();
 		Query q=session.createQuery(sql);
 
 		List list=q.list();
