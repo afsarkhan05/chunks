@@ -39,15 +39,22 @@ public class ViewArticleAction extends Action {
 		
 		if(articleList !=null && ! articleList.isEmpty()){
 			Object[] articleArr = (Object[]) articleList.get(0);
-			String htmlStr = org.apache.commons.lang3.StringEscapeUtils.unescapeHtml4(articleArr[0].toString());
-			
-			//System.out.println("My HTML STRING:::: "+ htmlStr);
-			
-			articleForm.setArticleDesc(htmlStr);
-			
-			request.setAttribute("desc", htmlStr);
-			request.setAttribute("articleTitle", CommonConstants.title  + " "+  articleArr[1]);
-			request.setAttribute("description", CommonConstants.title  + " "+  articleArr[1]);
+			if(articleArr[2] !=null){
+				request.setAttribute("articleTitle", CommonConstants.title  + " "+  articleArr[1]);
+				request.setAttribute("description", CommonConstants.title  + " "+  articleArr[1]);
+				ActionForward af = new ActionForward();
+				af.setName("pageForward");
+				af.setPath(articleArr[2].toString()+"?fdArticleTitle="+articleArr[1]+"&fdArticleId="+articleId);
+				af.setRedirect(true);
+				return af;
+			}else {
+				String htmlStr = org.apache.commons.lang3.StringEscapeUtils.unescapeHtml4(articleArr[0].toString());
+				//System.out.println("My HTML STRING:::: "+ htmlStr);
+				articleForm.setArticleDesc(htmlStr);
+				request.setAttribute("desc", htmlStr);
+				request.setAttribute("articleTitle", CommonConstants.title  + " "+  articleArr[1]);
+				request.setAttribute("description", CommonConstants.title  + " "+  articleArr[1]);
+			}
 		}else{
 			request.setAttribute("articleTitle", "My Chunks Title ");
 			request.setAttribute("description", "My Chunks Desc ");
